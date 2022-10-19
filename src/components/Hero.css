@@ -1,0 +1,28 @@
+.swiper .swiper-button-next:after,
+.swiper .swiper-button-prev:after {
+  font-size: 9px;
+  color: #fff;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  width: 28px;
+  height: 28px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.swiper-slide {
+  user-select: none;
+}
+.HeroSwiper {
+  max-width: 650px;
+}
+@media (min-width: 820px) {
+  .HeroSwiper {
+    width: calc((100vw - 60px) / 2);
+  }
+}
