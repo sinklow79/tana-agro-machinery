@@ -1,25 +1,34 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
-import implementData from "../components/implements.json";
+// import implementData from "../components/implements.json";
 import AvailableImages from "../components/AvailableImages";
 import { ReactComponent as BenefitSVG } from "../components/assets/icon/benefit.svg";
 import { TiTick } from "react-icons/ti";
 import { FaTractor } from "react-icons/fa";
 import { Main } from "../components/GlobalStyles";
+import { useLoaderData } from "react-router-dom";
 
-const Implements = ({ name }) => {
-  const data = useMemo(() => {
-    for (let i = 0; i < implementData.length; i++) {
-      if (implementData[i].name === name) {
-        return implementData[i];
-      }
-    }
-  }, [name]);
+export async function loader({ params }) {
+  const implementsData = require('../components/implements.json'); 
+  const data  = implementsData.find(obj => obj.urlName == params.urlName);
+  return data;
+}
+
+const Implements = () => {
+  const data = useLoaderData();
+
   const [selectedImg, setSelectedImg] = useState(data.images[0]);
   const handleImageClick = (path) => {
     setSelectedImg(path);
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    })
+  }, [])
 
   return (
     <>
@@ -27,8 +36,8 @@ const Implements = ({ name }) => {
       <Main style={{marginTop: "50px"}} id="#home">
         {data.video && (
           <ImplementVideoContainer>
-            <ImplementVideo autoPlay muted>
-              <source src={`${data.video}`} alt={name + "бичлэг"} />
+            <ImplementVideo autoPlay controls muted>
+              <source src={`${data.video}`} alt={data.name + "бичлэг"} />
             </ImplementVideo>
             <Skeleton />
           </ImplementVideoContainer>
@@ -38,11 +47,11 @@ const Implements = ({ name }) => {
             <ImplementTitle>{data.name}</ImplementTitle>
             <ImgCollection>
               <BigImgContainer>
-                <BigImg alt={name} src={`${selectedImg}`} />
+                <BigImg alt={data.name} src={`${selectedImg}`} />
                 <Skeleton />
               </BigImgContainer>
               <AvailableImages
-                alt={name}
+                alt={data.name}
                 selectedImg={selectedImg}
                 images={data.images}
                 handleImageClick={handleImageClick}

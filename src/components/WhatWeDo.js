@@ -26,6 +26,8 @@ const WhatWeDo = memo(({ setPos }) => {
 
   useEffect(() => {
     window.addEventListener("scroll", calcSth);
+
+    return () => window.removeEventListener("scroll", calcSth);
   }, [])
 
   return (
