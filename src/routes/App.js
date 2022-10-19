@@ -2,7 +2,6 @@
 import "./App.css";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
-import { Outlet } from "react-router-dom";
 import WhatWeDo from "../components/WhatWeDo";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
@@ -24,9 +23,6 @@ const App = () => {
 
   return (
     <div className=".App">
-      <div id="detail">
-        <Outlet />
-      </div>
       <Navbar position={position} />
       <Main>
         <Hero setPos={setPos} />
@@ -34,7 +30,6 @@ const App = () => {
         <ImplementsSection setPos={setPos} />
         <News setPos={setPos} />
         <Contact setPos={setPos} />
-        <Footer />
       </Main>
     </div>
   );

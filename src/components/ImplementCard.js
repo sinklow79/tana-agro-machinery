@@ -6,10 +6,11 @@ import ImplementModal from "./ImplementModal";
 const ImplementCard = memo(({ obj, handleClick1 }) => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {setOpen(!open); handleClick1()}
+  // төхөөрөмжүүд/${obj.urlName}
   return (
     <>
       {window.screen.width < 768 ? (
-        <Link to={`implements/${obj.name}`}>
+        <Link to={`tuhuurumjuud/${obj.urlName}`}>
           <ImplementCardContainer onClick={handleClick}>
             <ImplementTitle>{obj.name}</ImplementTitle>
             <ImplementImg alt={obj.name} src={`${obj.mainImg}`} />
