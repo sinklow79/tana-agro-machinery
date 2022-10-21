@@ -34,7 +34,7 @@ const Contact = memo(({ setPos }) => {
       (top <= 0 &&
         sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
     ) {
-      setPos(5);
+      setPos(4);
     }
   };
 

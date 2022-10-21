@@ -22,7 +22,7 @@ const WhatWeDo = memo(({ setPos }) => {
       (top <= 0 &&
         sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
     ) {
-      setPos(2);
+      setPos(1);
     }
   };
 

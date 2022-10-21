@@ -8,14 +8,7 @@ import NewsArticle from "./NewsArticle";
 import { Navigation } from "swiper";
 
 const News = memo(({ setPos }) => {
-  // const renderCounter = useRef(0);
-  // console.log(++renderCounter.current);
-  const slidesPerView =
-    window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 4;
-  const spaceBetween = window.innerWidth < 600 ? 15 : 15;
-
   const sectionRef = useRef();
-
   const calcSth = () => {
     const topWPadding =
       sectionRef.current.getBoundingClientRect().top +
@@ -27,7 +20,7 @@ const News = memo(({ setPos }) => {
       (top <= 0 &&
         sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
     ) {
-      setPos(4);
+      setPos(3);
     }
   };
 
@@ -46,10 +39,22 @@ const News = memo(({ setPos }) => {
           <SectionTitle>Мэдээ</SectionTitle>
           <NewsLayout>
             <Swiper
-              spaceBetween={spaceBetween}
-              slidesPerView={slidesPerView}
+              spaceBetween={15}
+              slidesPerView={1}
+              breakpoints={{
+                600: {
+                  slidesPerView: 2,
+                },
+                900: {
+                  slidesPerView: 4,
+                },
+              }}
               navigation={true}
               modules={[Navigation]}
+              updateOnWindowResize={true}
+              resizeObserver={true}
+              observer={true}
+              observeParents={true}
               className="newsSwiper"
             >
               {newsJSON.map((news, idx) => (

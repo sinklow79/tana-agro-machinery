@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo } from "react";
+import React, { useState, useRef, memo, useCallback } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as NavLogo } from "./assets/icon/tana-lab-logo-removebg-preview.svg";
@@ -13,47 +13,54 @@ const Navbar = memo(({ position, disable }) => {
   const linkRef4 = useRef(null);
   const linkRef5 = useRef(null);
 
-  const [bottomWidth, setBottomWidth] = useState({
-    position: 0,
-    width: 0,
-  });
+  const [bottomPosition, setBottomPosition] = useState(0);
   const [linkClicked, setLinkClicked] = useState(null);
-  const refLink = useRef([]);
+  const [linkWidths, setLinkWidths] = useState([0, 0, 0, 0, 0]);
   const navigate = useNavigate();
   const curPath = window.location.pathname;
+  const handleLinkClick = useCallback(
+    (path, pos) => {
+      if (window.innerWidth < 768) setMenuOpen(false);
+      if (curPath !== '/') {
+        navigate(path);
+      }
+      if (position !== bottomPosition) {
+        setLinkClicked(pos);
+      }
+    },
+    [bottomPosition, curPath, navigate, position]
+  );
 
   useEffect(() => {
-    refLink.current = [
-      linkRef2.current.offsetWidth,
-      linkRef3.current.offsetWidth,
-      linkRef4.current.offsetWidth,
-      linkRef5.current.offsetWidth,
-    ];
+    const linkWidthsInterval = setTimeout(() => {
+      setLinkWidths([
+        0,
+        linkRef2.current.offsetWidth,
+        linkRef3.current.offsetWidth,
+        linkRef4.current.offsetWidth,
+        linkRef5.current.offsetWidth,
+      ]);
+    }, 1000);
+
+    return () => clearTimeout(linkWidthsInterval);
   }, []);
 
   useEffect(() => {
     if (disable) {
-      setBottomWidth({
-        position: position,
-        width: position < 2 ? 0 : refLink.current[position - 2],
-      });
-    } else if (linkClicked && position === linkClicked.position) {
+      setBottomPosition(position);
+    } else if (linkClicked !== null && position === linkClicked) {
       setLinkClicked(null);
     } else if (!linkClicked) {
-      if (bottomWidth.position !== position) {
-        setBottomWidth({
-          position: position,
-          width: position < 2 ? 0 : refLink.current[position - 2],
-        });
+      if (bottomPosition !== position) {
+        setBottomPosition(position);
       }
     }
   }, [position, linkClicked]);
-
   const leftCalculator = (position, linkWidths) => {
-    if (position === 1) return 0;
+    if (!position) return 0;
     let left = 7.5;
-    for (let i = 0; i < position - 2; i++) {
-      left += linkWidths[i] + 5;
+    for (let i = 0; i < position; i++) {
+      left += linkWidths[i];
     }
     return left;
   };
@@ -61,23 +68,7 @@ const Navbar = memo(({ position, disable }) => {
   return (
     <Nav menuOpen={menuOpen}>
       <NavBar className="container" pos={position !== 0}>
-        <NavCompany
-          href="#нүүр"
-          onClick={() => {
-            if (curPath !== "/#нүүр") {
-              navigate("/#нүүр");
-            }
-            if (bottomWidth.position !== 1) {
-              setBottomWidth({
-                width: 0,
-                position: 0,
-              });
-            }
-            setLinkClicked({
-              position: 0,
-            });
-          }}
-        >
+        <NavCompany href="#нүүр" onClick={() => handleLinkClick("/#нүүр", 0)}>
           <StyledNavLogo />
 
           <NavCompanyName>Тана агро</NavCompanyName>
@@ -87,38 +78,14 @@ const Navbar = memo(({ position, disable }) => {
             <NavLink
               href="#тухай"
               ref={linkRef2}
-              onClick={() => {
-                if (curPath !== "/#тухай") {
-                  navigate("/#тухай");
-                }
-                if (window.innerWidth < 768) setMenuOpen(false);
-                if (bottomWidth.position !== 2) {
-                  setBottomWidth({
-                    position: 2,
-                    width: linkRef2.current.offsetWidth,
-                  });
-                }
-                if (position !== bottomWidth.position) {
-                  setLinkClicked({
-                    position: 2,
-                  });
-                }
-              }}
+              onClick={() => handleLinkClick("/#тухай", 1)}
               onMouseEnter={() => {
-                if (bottomWidth.position === 2) return;
-                setBottomWidth({
-                  position: 2,
-                  width: linkRef2.current.offsetWidth,
-                });
+                if (bottomPosition === 1) return;
+                setBottomPosition(1);
               }}
               onMouseLeave={() => {
-                if (!linkClicked) {
-                  if (bottomWidth.position === position) return;
-                  setBottomWidth({
-                    position: position,
-                    width: position < 2 ? 0 : refLink.current[position - 2],
-                  });
-                }
+                if (bottomPosition === position || linkClicked) return;
+                setBottomPosition(position);
               }}
             >
               Тухай
@@ -128,38 +95,14 @@ const Navbar = memo(({ position, disable }) => {
             <NavLink
               href="#төхөөрөмжүүд"
               ref={linkRef3}
-              onClick={() => {
-                if (curPath !== "/#төхөөрөмжүүд") {
-                  navigate("/#төхөөрөмжүүд");
-                }
-                if (window.innerWidth < 768) setMenuOpen(false);
-                if (bottomWidth.position !== 3) {
-                  setBottomWidth({
-                    position: 3,
-                    width: linkRef3.current.offsetWidth,
-                  });
-                }
-                if (position !== bottomWidth.position) {
-                  setLinkClicked({
-                    position: 3,
-                  });
-                }
-              }}
+              onClick={() => handleLinkClick("/#төхөөрөмжүүд", 2)}
               onMouseEnter={() => {
-                if (bottomWidth.position === 3) return;
-                setBottomWidth({
-                  position: 3,
-                  width: linkRef3.current.offsetWidth,
-                });
+                if (bottomPosition === 2) return;
+                setBottomPosition(2);
               }}
               onMouseLeave={() => {
-                if (!linkClicked) {
-                  if (bottomWidth.position === position) return;
-                  setBottomWidth({
-                    position: position,
-                    width: position < 2 ? 0 : refLink.current[position - 2],
-                  });
-                }
+                if (bottomPosition === position || linkClicked) return;
+                setBottomPosition(position);
               }}
             >
               Төхөөрөмжүүд
@@ -169,35 +112,14 @@ const Navbar = memo(({ position, disable }) => {
             <NavLink
               href="#мэдээ"
               ref={linkRef4}
-              onClick={() => {
-                if (window.innerWidth < 768) setMenuOpen(false);
-                if (bottomWidth.position !== 4) {
-                  setBottomWidth({
-                    position: 4,
-                    width: linkRef4.current.offsetWidth,
-                  });
-                }
-                if (position !== bottomWidth.position) {
-                  setLinkClicked({
-                    position: 4,
-                  });
-                }
-              }}
+              onClick={() => handleLinkClick("", 3)}
               onMouseEnter={() => {
-                if (bottomWidth.position === 4) return;
-                setBottomWidth({
-                  position: 4,
-                  width: linkRef4.current.offsetWidth,
-                });
+                if (bottomPosition === 3) return;
+                setBottomPosition(3);
               }}
               onMouseLeave={() => {
-                if (!linkClicked) {
-                  if (bottomWidth.position === position) return;
-                  setBottomWidth({
-                    position: position,
-                    width: position < 2 ? 0 : refLink.current[position - 2],
-                  });
-                }
+                if (bottomPosition === position || linkClicked) return;
+                setBottomPosition(position);
               }}
             >
               Мэдээ
@@ -207,47 +129,22 @@ const Navbar = memo(({ position, disable }) => {
             <NavLink
               href="#холбоо-барих"
               ref={linkRef5}
-              onClick={() => {
-                if (curPath !== "/#холбоо-барих") {
-                  navigate("/#холбоо-барих");
-                }
-                if (window.innerWidth < 768) setMenuOpen(false);
-                if (bottomWidth.position !== 5) {
-                  setBottomWidth({
-                    position: 5,
-                    width: linkRef5.current.offsetWidth,
-                  });
-                }
-                if (position !== bottomWidth.position) {
-                  setLinkClicked({
-                    position: 5,
-                  });
-                }
-              }}
+              onClick={() => handleLinkClick("/#холбоо-барих", 4)}
               onMouseEnter={() => {
-                if (bottomWidth.position === 5) return;
-                setBottomWidth({
-                  position: 5,
-                  width: linkRef5.current.offsetWidth,
-                });
+                if (bottomPosition === 4) return;
+                setBottomPosition(4);
               }}
               onMouseLeave={() => {
-                if (!linkClicked) {
-                  if (bottomWidth.position === position) return;
-
-                  setBottomWidth({
-                    position: position,
-                    width: position < 2 ? 0 : refLink.current[position - 2],
-                  });
-                }
+                if (bottomPosition === position || linkClicked) return;
+                setBottomPosition(position);
               }}
             >
               Холбоо барих
             </NavLink>
           </NavList>
           <NavLinkBottom
-            width={bottomWidth.width}
-            left={leftCalculator(bottomWidth.position, refLink.current)}
+            width={linkWidths[bottomPosition]}
+            left={leftCalculator(bottomPosition, linkWidths)}
           />
         </NavMenu>
         <NavMenuBarsContainer>
@@ -288,14 +185,14 @@ const StyledNavLogo = styled(NavLogo)`
 
 const NavLinkBottom = styled.span`
   position: absolute;
-  width: ${(props) => (props.width === 0 ? 0 : props.width - 15)}px;
+  width: ${(props) => (!props.width ? 0 : props.width - 15)}px;
   height: 1.3px;
   background: rgb(232, 52, 13);
   bottom: 8px;
   left: ${(props) => props.left}px;
   transition: 250ms ease-in-out;
 `;
-// width: x, bottomWidth: x - 15,
+// width: x, bottomPosition: x - 15,
 
 const NavCompany = styled.a`
   display: flex;
@@ -327,6 +224,8 @@ const Nav = styled.nav`
     props.menuOpen ? "0 -1px 0px 2px #c0c0c2" : "0 0 15px 0 rgba(0, 0, 0, .3)"};
   background-color: #f2f2f5;
   /* background-color: transparent; */
+  background: rgba(255,255,255,.8);
+  backdrop-filter: saturate(180%) blur(20px);
   border-bottom: ${(props) => props.menuOpen && "1px solid #c0c0c2"};
   z-index: 900;
   transition: 300ms ease;
@@ -370,7 +269,6 @@ const NavMenu = styled.ul`
     transform: initial;
     padding: 3px 0;
     display: flex;
-    column-gap: 5px;
     width: fit-content;
     height: 100%;
     align-items: center;
@@ -402,7 +300,6 @@ const NavLink = styled.a`
     border-bottom: 0;
     padding: 0 15px;
     margin: 0;
-    outline-offset: -1px;
     height: 100%;
     display: flex;
     align-items: center;

@@ -28,7 +28,7 @@ const NewsPage = memo(() => {
 
   return (
     <>
-      <Navbar position={4} disable />
+      <Navbar position={3} disable />
       <NewsSection bgColor="#f2f2fa">
         <SectionMasked>
           <SectionBackground className="container">
