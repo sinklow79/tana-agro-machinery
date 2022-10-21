@@ -32,7 +32,7 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <StrictMode>
+  // <StrictMode>
+  // </StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
 );

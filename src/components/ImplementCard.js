@@ -1,12 +1,13 @@
-import { memo,useState } from "react";
+import { memo, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ImplementModal from "./ImplementModal";
 
-const ImplementCard = memo(({ obj, handleClick1 }) => {
+const ImplementCard = memo(({ obj }) => {
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current, obj.name);
   const [open, setOpen] = useState(false);
-  const handleClick = () => {setOpen(!open); handleClick1()}
-  // төхөөрөмжүүд/${obj.urlName}
+  const handleClick = () => setOpen(!open);
   return (
     <>
       {window.screen.width < 768 ? (

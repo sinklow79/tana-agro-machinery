@@ -16,6 +16,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { TiTick, TiTimes } from "react-icons/ti";
 
 const Contact = memo(({ setPos }) => {
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current);
   const [position, setPosition] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
   const form = useRef();
@@ -94,7 +96,7 @@ const Contact = memo(({ setPos }) => {
   };
 
   return (
-    <ContactSection id="Холбоо-барих" ref={sectionRef}>
+    <ContactSection id="холбоо-барих" ref={sectionRef}>
       {submitStatus && (
         <SubmitStatus status={submitStatus}>
           {submitStatus === "success" ? <StyledTick /> : <StyledClose />}{" "}
@@ -241,10 +243,16 @@ const Contact = memo(({ setPos }) => {
                     style={{ display: "none" }}
                   />
                   <div style={{ position: "relative", height: "78px" }}>
-                    <div style={{ position: "absolute" }}>
+                    <div
+                      style={{
+                        position: "absolute",
+                        transform:
+                          window.innerWidth < 360 ? "scale(0.8)" : "scale(1)",
+                      }}
+                    >
                       <ReCAPTCHA
                         sitekey="6LdvLGIiAAAAAPs64aTnN3ZNa73QhohVdgnkHxZV"
-                        style={{ transform: window.innerWidth < 360 ? "scale(0.8)" : "scale(1)"}}
+                        // style={{ transform: window.innerWidth < 360 ? "scale(0.8)" : "scale(1)"}}
                       />
                     </div>
                   </div>

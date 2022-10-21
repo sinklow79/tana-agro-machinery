@@ -9,7 +9,10 @@ const NewsArticle = memo((news) => {
     <Link to={`medee/${newsData.id}`}>
       <NewsArticleContainer>
         <ImgContainer>
-          <img src={newsData.mainImg ? newsData.mainImg : defaultImg} />
+          <img
+            src={newsData.mainImg ? newsData.mainImg : defaultImg}
+            alt={news.title + "зураг"}
+          />
         </ImgContainer>
         <Data>
           <NewsTitle>{newsData.title}</NewsTitle>
@@ -22,6 +25,7 @@ const NewsArticle = memo((news) => {
 });
 const ImgContainer = styled.div`
   width: 100%;
+  max-height: 130px;
   overflow: hidden;
   img {
     display: block;
@@ -33,7 +37,7 @@ const ImgContainer = styled.div`
     calc(calc(100% - 275px) * 0.1 + 30px) 15px;
 */
 const Data = styled.div`
-  padding: 20px 15px 0;
+  padding: calc(20px + 1%) calc(15px + 1%) 0;
   color: white;
   letter-spacing: 0.5px;
 `;
@@ -70,7 +74,7 @@ const NewsDescription = styled.p`
   font-size: 12px;
   line-height: 1.4;
   margin-top: 25px;
-  padding: 25px 0 20px;
+  padding: calc(25px + 1%) 0;
   border-top: 1px solid #fff;
 `;
 

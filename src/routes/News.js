@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import { useLoaderData } from "react-router-dom";
 import News from "../components/News";
+import bgImg from "../components/assets/images/defaultImg.jfif";
 
 export async function loader({ params }) {
   const data = require("../components/News.json");
@@ -28,7 +29,7 @@ const NewsPage = memo(() => {
   return (
     <>
       <Navbar position={4} disable />
-      <Section bgColor="#f2f2fa">
+      <NewsSection bgColor="#f2f2fa">
         <SectionMasked>
           <SectionBackground className="container">
             <GuidesContainer>
@@ -37,11 +38,13 @@ const NewsPage = memo(() => {
             </GuidesContainer>
           </SectionBackground>
         </SectionMasked>
+      <BGImg>
+        <NewsTitle>{news.title}</NewsTitle>
+      </BGImg>
         <Container>
-          <NewsTitle>{news.title}</NewsTitle>
           <NewsDate>{news.date}</NewsDate>
           {news.video && (
-            <Video autoPlay controls>
+            <Video autoPlay={false} controls>
               <source src={news.video} />
             </Video>
           )}
@@ -61,11 +64,41 @@ const NewsPage = memo(() => {
             </Swiper>
           )}
         </Container>
-      </Section>
+      </NewsSection>
       <News />
     </>
   );
 });
+
+const NewsSection = styled(Section)`
+  padding-top: 0;
+  margin-top: 50px;
+`
+const BGImg = styled.div`
+  width: 100%;
+  height: 350px;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.25)
+    ),
+    url(${bgImg}) center/cover no-repeat;
+  /* margin-top: 50px; */
+`;
+
+const NewsTitle = styled.h1`
+  font-size: 30px;
+  padding: 0 15px;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+`;
 
 const SectionMasked = styled.div`
   position: absolute;
@@ -109,7 +142,7 @@ const Guide = styled.div`
 `;
 const Container = styled.div`
   max-width: 680px;
-  padding: 0 15px;
+  padding: 30px 15px 0;
   margin: auto;
   position: relative;
   z-index: 1;
@@ -118,20 +151,18 @@ const Video = styled.video`
   max-width: 100%;
 `;
 const NewsImg = styled.img``;
-const NewsTitle = styled.h1`
-  font-size: 30px;
-  /* text-align: center; */
-  margin-bottom: 50px;
-`;
+
 const NewsDate = styled.p`
-  font-size: 12px;
+  font-size: 13.5px;
+  font-weight: 500;
   margin-bottom: 10px;
   color: #000000aa;
-  /* text-align: center; */
+  padding: 0 15px;
 `;
 const NewsText = styled.p`
   margin-top: 50px;
   line-height: 1.4;
+  padding: 0 15px;
   font-size: 16.5px;
 `;
 
