@@ -1,11 +1,22 @@
 [
   {
-    "title": "",
-    "description": "",
+    "title": "Сармис тариалалт - Күбота & Тана Агро",
+    "description": "Күбота & Тана Агро 2020 онд хамтарч ажилласан.",
     "images": [],
-    "mainImg": "",
-    "defaultImg": "",
-    "date": "",
-    "text": ""
+    "video": "../assets/videos/news/video1.mp4",
+    "mainImg": "../assets/images/news/main1.png",
+    "date": "2022/10/20",
+    "text": "",
+    "id": "1"
+  },
+  {
+    "title": "Завханы Алдар Хаан суманд технологио нутагшуулав.",
+    "description": "Бид 2022 онд Завханы Алдар Хаан суманд технологио нутагшуулж, сармис тарисан.",
+    "images": [],
+    "video": "../assets/videos/news/video2.mp4",
+    "mainImg": "../assets/images/news/main2.jpg",
+    "date": "2022/10/20",
+    "text": "",
+    "id": "2"
   }
 ]

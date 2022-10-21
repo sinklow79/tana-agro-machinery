@@ -7,6 +7,8 @@ import styled from "styled-components";
 import { Section, SectionMasked, SectionTitle } from "./GlobalStyles";
 
 const WhatWeDo = memo(({ setPos }) => {
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current);
   const sectionRef = useRef();
 
   const calcSth = () => {
@@ -25,13 +27,14 @@ const WhatWeDo = memo(({ setPos }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", calcSth);
-
+    if (window.innerWidth >= 768) {
+      window.addEventListener("scroll", calcSth);
+    }
     return () => window.removeEventListener("scroll", calcSth);
-  }, [])
+  }, []);
 
   return (
-    <Section id="Тухай" ref={sectionRef}>
+    <Section id="тухай" ref={sectionRef}>
       <SectionMasked />
       <SectionContainer className="container">
         <WWDSectionTitle>Ягаад бидэнтэй ажиллана гэж?</WWDSectionTitle>

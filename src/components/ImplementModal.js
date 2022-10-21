@@ -7,7 +7,6 @@ import { FaTractor } from "react-icons/fa";
 import { ReactComponent as BenefitSVG } from "../components/assets/icon/benefit.svg";
 
 const ImplementModal = ({ data, handleOutsideClick }) => {
-  
   let availableContent = [...data.images];
   if (data.video) availableContent.unshift(data.video);
 
@@ -136,7 +135,7 @@ const ModalBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 10, .4);
+  background-color: rgba(0, 0, 10, 0.4);
   width: 100%;
   height: 100vh;
   z-index: 9990;

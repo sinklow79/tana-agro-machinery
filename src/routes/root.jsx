@@ -5,12 +5,12 @@ import { Main } from "../components/GlobalStyles";
 
 const Root = () => {
   return (
-    <div>
+    <>
       <Main>
         <Outlet />
       </Main>
       <Footer />
-    </div>
+    </>
   );
 };
 

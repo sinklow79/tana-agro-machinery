@@ -1,7 +1,7 @@
 import React, { useState, useRef, memo, useEffect } from "react";
 import styled from "styled-components";
 import { Formik, Field, Form } from "formik";
-import { object, string, number, array } from "yup";
+import { object, string, number, array, setLocale } from "yup";
 import { Button, TextField } from "@mui/material";
 import {
   SectionTitle,
@@ -16,20 +16,12 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { TiTick, TiTimes } from "react-icons/ti";
 
 const Contact = memo(({ setPos }) => {
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current);
   const [position, setPosition] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
   const form = useRef();
   const sectionRef = useRef();
-  // const { ref, inView, entry } = useInView({
-  //   threshold: .5
-  // });
-
-  // useEffect(() => {
-  //   if (inView) setInView(4);
-  // }, [inView, setInView]);
-
-  const renderCounter = useRef(0);
-  // console.log(++renderCounter.current, " Contact")
 
   const calcSth = () => {
     const topWPadding =
@@ -47,8 +39,9 @@ const Contact = memo(({ setPos }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", calcSth);
-
+    if (window.innerWidth >= 768) {
+      window.addEventListener("scroll", calcSth);
+    }
     return () => window.removeEventListener("scroll", calcSth);
   }, []);
 
@@ -103,7 +96,7 @@ const Contact = memo(({ setPos }) => {
   };
 
   return (
-    <ContactSection id="Холбоо-барих" ref={sectionRef}>
+    <ContactSection id="холбоо-барих" ref={sectionRef}>
       {submitStatus && (
         <SubmitStatus status={submitStatus}>
           {submitStatus === "success" ? <StyledTick /> : <StyledClose />}{" "}
@@ -249,13 +242,20 @@ const Contact = memo(({ setPos }) => {
                     readOnly
                     style={{ display: "none" }}
                   />
-                  <ReCAPTCHA
-                    sitekey="6LdvLGIiAAAAAPs64aTnN3ZNa73QhohVdgnkHxZV"
-                    style={{
-                      transform:
-                        window.innerWidth < 360 ? "scale(0.8)" : "scale(1)",
-                    }}
-                  />
+                  <div style={{ position: "relative", height: "78px" }}>
+                    <div
+                      style={{
+                        position: "absolute",
+                        transform:
+                          window.innerWidth < 360 ? "scale(0.8)" : "scale(1)",
+                      }}
+                    >
+                      <ReCAPTCHA
+                        sitekey="6LdvLGIiAAAAAPs64aTnN3ZNa73QhohVdgnkHxZV"
+                        // style={{ transform: window.innerWidth < 360 ? "scale(0.8)" : "scale(1)"}}
+                      />
+                    </div>
+                  </div>
                   <Button
                     type="submit"
                     variant="contained"
@@ -330,7 +330,9 @@ const StyledClose = styled(TiTimes)`
   color: white;
 `;
 
-const ContactSection = styled(Section)``;
+const ContactSection = styled(Section)`
+  border-top: 1px solid #f2f2fa;
+`;
 const SectionLayoutContainer = styled.div``;
 const SectionLayout = styled.div``;
 const SectionHeader = styled.div``;

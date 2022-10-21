@@ -8,7 +8,8 @@ import NewsArticle from "./NewsArticle";
 import { Navigation } from "swiper";
 
 const News = memo(({ setPos }) => {
-
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current);
   const slidesPerView =
     window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 4;
   const spaceBetween = window.innerWidth < 600 ? 15 : 15;
@@ -31,42 +32,41 @@ const News = memo(({ setPos }) => {
   };
 
   useEffect(() => {
-    if (sectionRef.current) {
+    if (window.innerWidth >= 768 && setPos) {
       window.addEventListener("scroll", calcSth);
     }
+    return () => window.removeEventListener("scroll", calcSth);
   }, []);
 
   return (
-    newsJSON[0].title && (
-      <NewsSection id="Мэдээ" ref={sectionRef}>
-        <SectionMasked />
-        <SectionContainer className="container">
-          <NewsContainer>
-            <SectionTitle>Мэдээ</SectionTitle>
-            <NewsLayout>
-              <Swiper
-                spaceBetween={spaceBetween}
-                slidesPerView={slidesPerView}
-                navigation={true}
-                modules={[Navigation]}
-                className="newsSwiper"
-              >
-                {newsJSON.map((news, idx) => (
-                  <SwiperSlide key={news.description + news.title + idx}>
-                    <NewsArticle news={news} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </NewsLayout>
-          </NewsContainer>
-        </SectionContainer>
-      </NewsSection>
-    )
+    <NewsSection id="мэдээ" ref={sectionRef}>
+      <SectionMasked />
+      <SectionContainer className="container">
+        <NewsContainer>
+          <SectionTitle>Мэдээ</SectionTitle>
+          <NewsLayout>
+            <Swiper
+              spaceBetween={spaceBetween}
+              slidesPerView={slidesPerView}
+              navigation={true}
+              modules={[Navigation]}
+              className="newsSwiper"
+            >
+              {newsJSON.map((news, idx) => (
+                <SwiperSlide key={news.description + news.title + idx}>
+                  <NewsArticle news={news} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </NewsLayout>
+        </NewsContainer>
+      </SectionContainer>
+    </NewsSection>
   );
 });
 
 const NewsSection = styled(Section)`
-  border-bottom: 1px solid #f2f2fa;
+  border-top: 1px solid #f2f2fa;
 `;
 const SectionContainer = styled.div``;
 const NewsContainer = styled.div``;

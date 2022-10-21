@@ -1,95 +1,169 @@
-import React, { memo } from "react";
-import { Main, Section, SectionMasked } from "../components/GlobalStyles";
+import React, { memo, useEffect } from "react";
+import { Section } from "../components/GlobalStyles";
 import Navbar from "../components/Navbar";
-import newsJSON from "../components/News.json";
 import styled from "styled-components";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-
-// import required modules
 import { Navigation } from "swiper";
-import Footer from "../components/Footer";
+import { useLoaderData } from "react-router-dom";
+import News from "../components/News";
+import bgImg from "../components/assets/images/defaultImg.jfif";
 
-const News = memo(({ id }) => {
-  let newsObj;
-  for (let i = 0; i < newsJSON.length; i++) {
-    if (newsJSON[i].id === id) {
-      newsObj = newsJSON[i];
-      break;
-    }
-  }
+export async function loader({ params }) {
+  const data = require("../components/News.json");
+  const exactData = data.find((obj) => obj.id === params.newsId);
+  return exactData;
+}
+
+const NewsPage = memo(() => {
+  const news = useLoaderData();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
 
   return (
     <>
-      <Navbar />
-      <Main>
-        <Section>
-          <SectionMasked />
-          <SectionContainer className="container">
-            <ColumnLayout>
-              <Left>
-                <Swiper
-                  navigation={true}
-                  modules={[Navigation]}
-                  className="newsPageSwiper"
-                  loop={false}
-                >
-                  {newsObj.images.map((img, idx) => (
-                    <SwiperSlide key={idx}>
-                      <NewsImg alt={`${newsObj.title} + зураг`} src={img} />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </Left>
-              <Right>
-                <NewsTitle>{newsObj.title}</NewsTitle>
-                <NewsDate>{newsObj.date}</NewsDate>
-                <NewsText>{newsObj.text}</NewsText>
-              </Right>
-            </ColumnLayout>
-          </SectionContainer>
-        </Section>
-      </Main>
-      <Footer />
+      <Navbar position={4} disable />
+      <NewsSection bgColor="#f2f2fa">
+        <SectionMasked>
+          <SectionBackground className="container">
+            <GuidesContainer>
+              <Guide />
+              <Guide />
+            </GuidesContainer>
+          </SectionBackground>
+        </SectionMasked>
+        <BGImg>
+          <NewsTitle>{news.title}</NewsTitle>
+        </BGImg>
+        <Container>
+          <NewsDate>{news.date}</NewsDate>
+          {news.video && (
+            <Video autoPlay controls>
+              <source src={news.video} />
+            </Video>
+          )}
+          <NewsText>{news.text ? news.text : news.description}</NewsText>
+          {news.images && (
+            <Swiper
+              navigation={true}
+              modules={[Navigation]}
+              className="newsPageSwiper"
+              loop={false}
+            >
+              {news.images.map((img, idx) => (
+                <SwiperSlide key={idx}>
+                  <NewsImg alt={`${news.title} + зураг`} src={img} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+        </Container>
+      </NewsSection>
+      <News />
     </>
   );
 });
-const SectionContainer = styled.div`
+
+const NewsSection = styled(Section)`
+  padding-top: 0;
+  margin-top: 50px;
+`;
+const BGImg = styled.div`
+  width: 100%;
+  height: 350px;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.25)
+    ),
+    url(${bgImg}) center/cover no-repeat;
+  /* margin-top: 50px; */
+`;
+
+const NewsTitle = styled.h1`
+  font-size: 30px;
+  padding: 0 15px;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+`;
+
+const SectionMasked = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+`;
+const SectionBackground = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+const GuidesContainer = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+`;
+const Guide = styled.div`
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(66, 71, 112, 0.1),
+    rgba(66, 71, 112, 0.1) 50%,
+    transparent 0,
+    transparent
+  );
+  background-size: 1px 8px;
+  &:last-of-type {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    background: rgba(66, 71, 112, 0.1);
+    background-size: 0;
+  }
+  &:first-of-type {
+    background: rgba(66, 71, 112, 0.1);
+    background-size: 0;
+  }
+`;
+const Container = styled.div`
+  max-width: 680px;
+  padding: 30px 15px 0;
+  margin: auto;
   position: relative;
   z-index: 1;
 `;
-const ColumnLayout = styled.div`
-  @media (min-width: 600px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+const Video = styled.video`
+  max-width: 100%;
 `;
-const Left = styled.div``;
 const NewsImg = styled.img``;
-const Right = styled.div`
-  padding: 0 15px;
-  letter-spacing: 0.5px;
-  margin-top: 72px;
-  @media (min-width: 600px) {
-    margin-top: 0;
-  }
-`;
-const NewsTitle = styled.h1`
-  font-size: 30px;
-  margin-bottom: 5px;
-`;
+
 const NewsDate = styled.p`
-  font-size: 12px;
-  color: #000000cc;
+  font-size: 13.5px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #000000aa;
+  padding: 0 15px;
 `;
 const NewsText = styled.p`
   margin-top: 50px;
   line-height: 1.4;
+  padding: 0 15px;
   font-size: 16.5px;
 `;
 
-export default News;
+export default NewsPage;

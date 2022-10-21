@@ -1,4 +1,4 @@
-import React, { useState, memo, useEffect, useRef } from "react";
+import React, { useState, memo, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
 import { Section, SectionMasked, SectionTitle } from "./GlobalStyles.js";
 import ImplementCard from "./ImplementCard.js";
@@ -7,9 +7,8 @@ import greenmaxCatalog from "./assets/other/Greenmax catalog.pdf";
 import { BiChevronRight } from "react-icons/bi";
 
 const ImplementsSection = memo(({ setPos }) => {
-  const [open, setOpen] = useState(false);
-  const handleClick1 = () => setOpen(!open);
-
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current);
   const sectionRef = useRef();
 
   const calcSth = () => {
@@ -28,30 +27,21 @@ const ImplementsSection = memo(({ setPos }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", calcSth);
-
+    if (window.innerWidth >= 768) {
+      window.addEventListener("scroll", calcSth);
+    }
     return () => window.removeEventListener("scroll", calcSth);
   }, []);
 
   return (
-    <StyledSection
-      id="Төхөөрөмжүүд"
-      bgColor="#f2f2fa"
-      open={open}
-      ref={sectionRef}
-    >
+    <StyledSection id="төхөөрөмжүүд" bgColor="#f2f2fa" ref={sectionRef}>
       <SectionMasked />
       <SectionContainer className="container">
         <SectionTitle>Төхөөрөмжүүд</SectionTitle>
         <ImplementCardContainer>
           {implementsJSON &&
             implementsJSON.map((obj) => (
-              <ImplementCard
-                obj={obj}
-                key={obj.id}
-                handleClick1={handleClick1}
-                open={open}
-              />
+              <ImplementCard obj={obj} key={obj.id} />
             ))}
         </ImplementCardContainer>
         <CatalogLink href={greenmaxCatalog} download>
@@ -64,7 +54,7 @@ const ImplementsSection = memo(({ setPos }) => {
   );
 });
 const StyledSection = styled(Section)`
-  z-index: ${(props) => (props.open ? 2 : 1)};
+  z-index: 2;
 `;
 const StyledChevronRight = styled(BiChevronRight)`
   vertical-align: middle;

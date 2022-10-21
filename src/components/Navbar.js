@@ -2,8 +2,11 @@ import React, { useState, useRef, memo } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as NavLogo } from "./assets/icon/tana-lab-logo-removebg-preview.svg";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = memo(({ position }) => {
+const Navbar = memo(({ position, disable }) => {
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current);
   const [menuOpen, setMenuOpen] = useState(false);
   const linkRef2 = useRef(null);
   const linkRef3 = useRef(null);
@@ -16,6 +19,8 @@ const Navbar = memo(({ position }) => {
   });
   const [linkClicked, setLinkClicked] = useState(null);
   const refLink = useRef([]);
+  const navigate = useNavigate();
+  const curPath = window.location.pathname;
 
   useEffect(() => {
     refLink.current = [
@@ -27,7 +32,12 @@ const Navbar = memo(({ position }) => {
   }, []);
 
   useEffect(() => {
-    if (linkClicked && position === linkClicked.position) {
+    if (disable) {
+      setBottomWidth({
+        position: position,
+        width: position < 2 ? 0 : refLink.current[position - 2],
+      });
+    } else if (linkClicked && position === linkClicked.position) {
       setLinkClicked(null);
     } else if (!linkClicked) {
       if (bottomWidth.position !== position) {
@@ -50,41 +60,37 @@ const Navbar = memo(({ position }) => {
 
   return (
     <Nav menuOpen={menuOpen}>
-      <NavBar className="container">
+      <NavBar className="container" pos={position !== 0}>
         <NavCompany
-          href="#home"
+          href="#нүүр"
           onClick={() => {
+            if (curPath !== "/#нүүр") {
+              navigate("/#нүүр");
+            }
             if (bottomWidth.position !== 1) {
               setBottomWidth({
                 width: 0,
-                position: 1,
+                position: 0,
               });
             }
-            if (linkClicked.position !== 1) {
-              setLinkClicked({
-                position: 1,
-              });
-            }
+            setLinkClicked({
+              position: 0,
+            });
           }}
         >
-          <NavLogo
-            style={{
-              position: "relative",
-              zIndex: "999",
-              height: "40px",
-              width: "40px",
-            }}
-            fill="#000000"
-          />
+          <StyledNavLogo />
 
           <NavCompanyName>Тана агро</NavCompanyName>
         </NavCompany>
         <NavMenu menuOpen={menuOpen}>
           <NavList>
             <NavLink
-              href="#Тухай"
+              href="#тухай"
               ref={linkRef2}
               onClick={() => {
+                if (curPath !== "/#тухай") {
+                  navigate("/#тухай");
+                }
                 if (window.innerWidth < 768) setMenuOpen(false);
                 if (bottomWidth.position !== 2) {
                   setBottomWidth({
@@ -120,9 +126,12 @@ const Navbar = memo(({ position }) => {
           </NavList>
           <NavList>
             <NavLink
-              href="#Төхөөрөмжүүд"
+              href="#төхөөрөмжүүд"
               ref={linkRef3}
               onClick={() => {
+                if (curPath !== "/#төхөөрөмжүүд") {
+                  navigate("/#төхөөрөмжүүд");
+                }
                 if (window.innerWidth < 768) setMenuOpen(false);
                 if (bottomWidth.position !== 3) {
                   setBottomWidth({
@@ -158,7 +167,7 @@ const Navbar = memo(({ position }) => {
           </NavList>
           <NavList>
             <NavLink
-              href="#Мэдээ"
+              href="#мэдээ"
               ref={linkRef4}
               onClick={() => {
                 if (window.innerWidth < 768) setMenuOpen(false);
@@ -196,9 +205,12 @@ const Navbar = memo(({ position }) => {
           </NavList>
           <NavList>
             <NavLink
-              href="#Холбоо-барих"
+              href="#холбоо-барих"
               ref={linkRef5}
               onClick={() => {
+                if (curPath !== "/#холбоо-барих") {
+                  navigate("/#холбоо-барих");
+                }
                 if (window.innerWidth < 768) setMenuOpen(false);
                 if (bottomWidth.position !== 5) {
                   setBottomWidth({
@@ -238,16 +250,41 @@ const Navbar = memo(({ position }) => {
             left={leftCalculator(bottomWidth.position, refLink.current)}
           />
         </NavMenu>
-        <NavMenuBars onClick={() => setMenuOpen(!menuOpen)}>
-          <MenuBar menuOpen={menuOpen}></MenuBar>
-          <MenuBar menuOpen={menuOpen}></MenuBar>
-          <MenuBar menuOpen={menuOpen}></MenuBar>
-          <MenuBar menuOpen={menuOpen}></MenuBar>
-        </NavMenuBars>
+        <NavMenuBarsContainer>
+          <NavMenuBars onClick={() => setMenuOpen(!menuOpen)}>
+            <MenuBar menuOpen={menuOpen}></MenuBar>
+            <MenuBar menuOpen={menuOpen}></MenuBar>
+            <MenuBar menuOpen={menuOpen}></MenuBar>
+            <MenuBar menuOpen={menuOpen}></MenuBar>
+          </NavMenuBars>
+        </NavMenuBarsContainer>
       </NavBar>
     </Nav>
   );
 });
+
+// style={{
+//   position: "relative",
+//   zIndex: "999",
+//   height: "40px",
+//   width: "40px",
+// }}
+
+const NavMenuBarsContainer = styled.div`
+  position: relative;
+  z-index: inherit;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const StyledNavLogo = styled(NavLogo)`
+  height: 40px;
+  width: 40px;
+  fill: #000;
+  position: relative;
+  z-index: 900;
+`;
 
 const NavLinkBottom = styled.span`
   position: absolute;
@@ -289,6 +326,7 @@ const Nav = styled.nav`
   box-shadow: ${(props) =>
     props.menuOpen ? "0 -1px 0px 2px #c0c0c2" : "0 0 15px 0 rgba(0, 0, 0, .3)"};
   background-color: #f2f2f5;
+  /* background-color: transparent; */
   border-bottom: ${(props) => props.menuOpen && "1px solid #c0c0c2"};
   z-index: 900;
   transition: 300ms ease;
@@ -301,6 +339,11 @@ const NavBar = styled.div`
   align-items: center;
   justify-content: space-between;
   transition: inherit;
+  position: relative;
+  z-index: 101;
+  @media (min-width: 820px) {
+    padding: 0 ${(props) => (props.pos ? "45px" : "30px")};
+  }
 `;
 
 const NavMenu = styled.ul`
@@ -331,6 +374,7 @@ const NavMenu = styled.ul`
     width: fit-content;
     height: 100%;
     align-items: center;
+    background-color: transparent;
   }
 `;
 
@@ -367,16 +411,12 @@ const NavLink = styled.a`
 `;
 
 const NavMenuBars = styled.div`
-  width: 40px;
+  width: 20px;
   height: 40px;
   position: relative;
-  transform: rotate(0deg);
   transition: 0.5s ease-in-out;
   cursor: pointer;
   z-index: inherit;
-  @media (min-width: 768px) {
-    display: none;
-  }
 `;
 
 const MenuBar = styled.div`

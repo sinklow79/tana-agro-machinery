@@ -10,28 +10,35 @@ import "./Hero.css";
 import { Section } from "./GlobalStyles";
 
 const Hero = memo(({ setPos }) => {
-
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current);
   const sectionRef = useRef();
 
   const calcSth = () => {
-    const topWPadding = sectionRef.current.getBoundingClientRect().top + window.innerWidth * 0.03 + 72;
+    const topWPadding =
+      sectionRef.current.getBoundingClientRect().top +
+      window.innerWidth * 0.03 +
+      72;
     const top = sectionRef.current.getBoundingClientRect().top;
-    if ((topWPadding >= 0 && topWPadding <= window.innerHeight * 0.4) ||
-    (top <= 0 &&
-      sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)) {
-      // console.log("hero");
+    if (
+      (topWPadding >= 0 && topWPadding <= window.innerHeight * 0.4) ||
+      (top <= 0 &&
+        sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
+    ) {
       setPos(0);
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", calcSth);
+    if (window.innerWidth >= 768) {
+      window.addEventListener("scroll", calcSth);
+    }
 
     return () => window.removeEventListener("scroll", calcSth);
-  }, [])
+  }, []);
 
   return (
-    <HeroSection id="home" ref={sectionRef}>
+    <HeroSection id="нүүр" ref={sectionRef}>
       <HeroGridContainer>
         <HeroGrid className="container">
           <Left>
@@ -61,7 +68,7 @@ const Hero = memo(({ setPos }) => {
               <SwiperSlide>
                 <img
                   alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg0.jpg")}
+                  src={require("./assets/images/HeroImages/HeroImg6.jpg")}
                 />
               </SwiperSlide>
               <SwiperSlide>
@@ -97,7 +104,7 @@ const Hero = memo(({ setPos }) => {
               <SwiperSlide>
                 <img
                   alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg6.jpg")}
+                  src={require("./assets/images/HeroImages/HeroImg0.jpg")}
                 />
               </SwiperSlide>
               <SwiperSlide>
