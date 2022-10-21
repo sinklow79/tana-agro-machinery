@@ -1,11 +1,72 @@
 [
   {
-    "title": "",
-    "description": "",
+    "title": "Сармис тариалалт - Күбота & Тана Агро",
+    "description": "Күбота & Тана Агро 2020 онд хамтарч ажилласан.",
     "images": [],
-    "mainImg": "",
-    "defaultImg": "",
-    "date": "",
-    "text": ""
+    "video": "../assets/videos/news/video1.mp4",
+    "mainImg": "../assets/images/news/main1.png",
+    "date": "2022/10/20",
+    "text": "",
+    "id": "1"
+  },
+  {
+    "title": "Сармис тариалалт - Күбота & Тана Агро",
+    "description": "Күбота & Тана Агро 2020 онд хамтарсан ажил.",
+    "images": [],
+    "video": "../assets/videos/news/video1.mp4",
+    "mainImg": "../assets/images/news/main1.png",
+    "date": "2022/10/20",
+    "text": "",
+    "id": "1"
+  },
+  {
+    "title": "Сармис тариалалт - Күбота & Тана Агро",
+    "description": "Күбота & Тана Агро 2020 онд хамтарсан ажил.",
+    "images": [],
+    "video": "../assets/videos/news/video1.mp4",
+    "mainImg": "../assets/images/news/main1.png",
+    "date": "2022/10/20",
+    "text": "",
+    "id": "1"
+  },
+  {
+    "title": "Сармис тариалалт - Күбота & Тана Агро",
+    "description": "Күбота & Тана Агро 2020 онд хамтарсан ажил.",
+    "images": [],
+    "video": "../assets/videos/news/video1.mp4",
+    "mainImg": "../assets/images/news/main1.png",
+    "date": "2022/10/20",
+    "text": "",
+    "id": "1"
+  },
+  {
+    "title": "Сармис тариалалт - Күбота & Тана Агро",
+    "description": "Күбота & Тана Агро 2020 онд хамтарсан ажил.",
+    "images": [],
+    "video": "../assets/videos/news/video1.mp4",
+    "mainImg": "../assets/images/news/main1.png",
+    "date": "2022/10/20",
+    "text": "",
+    "id": "1"
+  },
+  {
+    "title": "Сармис тариалалт - Күбота & Тана Агро",
+    "description": "Күбота & Тана Агро 2020 онд хамтарсан ажил.",
+    "images": [],
+    "video": "../assets/videos/news/video1.mp4",
+    "mainImg": "../assets/images/news/main1.png",
+    "date": "2022/10/20",
+    "text": "",
+    "id": "1"
+  },
+  {
+    "title": "Сармис тариалалт - Күбота & Тана Агро",
+    "description": "Күбота & Тана Агро 2020 онд хамтарсан ажил.",
+    "images": [],
+    "video": "../assets/videos/news/video1.mp4",
+    "mainImg": "../assets/images/news/main1.png",
+    "date": "2022/10/20",
+    "text": "",
+    "id": "1"
   }
 ]

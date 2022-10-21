@@ -31,13 +31,13 @@ const News = memo(({ setPos }) => {
   };
 
   useEffect(() => {
-    if (sectionRef.current) {
+    if (window.innerWidth >= 768 && setPos) {
       window.addEventListener("scroll", calcSth);
     }
+    return () => window.removeEventListener("scroll", calcSth);
   }, []);
 
   return (
-    newsJSON[0].title && (
       <NewsSection id="Мэдээ" ref={sectionRef}>
         <SectionMasked />
         <SectionContainer className="container">
@@ -62,11 +62,10 @@ const News = memo(({ setPos }) => {
         </SectionContainer>
       </NewsSection>
     )
-  );
 });
 
 const NewsSection = styled(Section)`
-  border-bottom: 1px solid #f2f2fa;
+    border-top: 1px solid #f2f2fa;
 `;
 const SectionContainer = styled.div``;
 const NewsContainer = styled.div``;

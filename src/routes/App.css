@@ -59,7 +59,6 @@ li {
   width: 300px;
   height: 300px;
 }
-
 /******************** NAVBAR ********************/
 
 /*************** GLOBAL STYLING ***************/
@@ -258,6 +257,9 @@ li {
     display: grid;
     grid: auto / repeat(2, 1fr);
   }
+  .ContactBtn {
+    grid-column: 1 / 2;
+  }
 }
 
 @media (min-width: 900px) {
@@ -274,4 +276,8 @@ li {
 
 .WWDIcon1 > * {
   fill: inherit !important;
+}
+
+.newsSwiper .swiper-slide {
+  margin: 20px 0;
 }

@@ -6,12 +6,12 @@ import AvailableImages from "../components/AvailableImages";
 import { ReactComponent as BenefitSVG } from "../components/assets/icon/benefit.svg";
 import { TiTick } from "react-icons/ti";
 import { FaTractor } from "react-icons/fa";
-import { Main } from "../components/GlobalStyles";
+import { SectionMasked } from "../components/GlobalStyles";
 import { useLoaderData } from "react-router-dom";
 
 export async function loader({ params }) {
   const implementsData = require('../components/implements.json'); 
-  const data  = implementsData.find(obj => obj.urlName == params.urlName);
+  const data  = implementsData.find(obj => obj.urlName === params.urlName);
   return data;
 }
 
@@ -33,7 +33,7 @@ const Implements = () => {
   return (
     <>
       <Navbar />
-      <Main style={{marginTop: "50px"}} id="#home">
+      <section style={{marginTop: "50px"}} id="#home">
         {data.video && (
           <ImplementVideoContainer>
             <ImplementVideo autoPlay controls muted>
@@ -61,6 +61,7 @@ const Implements = () => {
           </div>
         </ImplementImages>
         <FeaturesBenefits>
+        <SectionMasked />
           <div className="container">
             <Padding>
               <FeaturesTitleContainer>
@@ -76,7 +77,7 @@ const Implements = () => {
                   style={{ width: "40px", height: "40px" }}
                 />
               </FeaturesTitleContainer>
-              <FeaturesBenefitsUl>
+              <FeaturesBenefitsUl tractor={data.tractor}>
                 {data.benefits.map((benefit) => (
                   <FeaturesBenefitsLi key={benefit}>
                     <TiTick
@@ -104,7 +105,7 @@ const Implements = () => {
                 ))}
               </FeaturesBenefitsUl>
               {data.tractor && (
-                <>
+                <FeaturesTractor>
                   <FeaturesTitleContainer>
                     <FeaturesTitle company={data.company}>
                       Чирэх трактор
@@ -123,7 +124,7 @@ const Implements = () => {
                     />
                     {data.tractor}
                   </FeaturesBenefitsLi>
-                </>
+                </FeaturesTractor>
               )}
             </Padding>
           </div>
@@ -131,10 +132,12 @@ const Implements = () => {
             <img alt={data.company + "logo"} src={`${data.companyLogo}`} />
           </CompanyLogo>
         </FeaturesBenefits>
-      </Main>
+      </section>
     </>
   );
 };
+const FeaturesTractor = styled.div`
+`
 const Padding = styled.div`
   padding: 0 15px;
 `;
@@ -192,9 +195,11 @@ const BigImg = styled.img`
   z-index: 2;
 `;
 const FeaturesBenefits = styled.div`
+position: relative;
   padding: 36px 0;
 `;
 const FeaturesBenefitsUl = styled.ul`
+  
   display: flex;
   flex-direction: column;
   row-gap: 15px;

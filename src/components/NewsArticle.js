@@ -1,76 +1,66 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import defaultImg from "./assets/images/onion.jpg";
 
 const NewsArticle = memo((news) => {
-  const linkName = news.news.title.replace(/ /g, "-");
+  const newsData = news.news;
   return (
-    <NewsArticleContainer
-      img={news.news.mainImg ? news.news.mainImg : news.news.defaultImg}
-    >
-      <NewsTitle>{news.news.title}</NewsTitle>
-      <NewsDate>{news.news.date}</NewsDate>
-      <NewsDescription>{news.news.description}</NewsDescription>
-      <Link to={`мэдээ/${linkName}`}>
-        <NewsButton>Унших</NewsButton>
-      </Link>
-    </NewsArticleContainer>
+    <Link to={`medee/${newsData.id}`}>
+      <NewsArticleContainer>
+        <ImgContainer>
+          <img src={newsData.mainImg ? newsData.mainImg : defaultImg} />
+        </ImgContainer>
+        <Data>
+          <NewsTitle>{newsData.title}</NewsTitle>
+          <NewsDate>{newsData.date}</NewsDate>
+          <NewsDescription>{newsData.description}</NewsDescription>
+        </Data>
+      </NewsArticleContainer>
+    </Link>
   );
 });
-
-const NewsButton = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  z-index: 0;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 10px 20px;
-  background-color: rgb(232, 52, 13);
-  transition: 250ms ease;
-  color: #fff;
+const ImgContainer = styled.div`
+  width: 100%;
+  overflow: hidden;
+  img {
+    display: block;
+    transition: 250ms ease;
+  }
+`;
+/*
+  padding: calc(calc(100% - 275px) * 0.1 + 40px) 15px
+    calc(calc(100% - 275px) * 0.1 + 30px) 15px;
+*/
+const Data = styled.div`
+  padding: 20px 15px 0;
+  color: white;
+  letter-spacing: 0.5px;
 `;
 
 const NewsArticleContainer = styled.article`
-  background-color: #f2f2fa;
-  padding: 40px 15px;
-  padding: calc(calc(100% - 275px) * 0.1 + 40px) 15px;
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
   position: relative;
-  letter-spacing: 0.5px;
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.6)),
-    ${(props) => `url(${props.img})`} no-repeat center/cover;
-  color: white;
-  overflow: hidden;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
-    z-index: 0;
-    transition: 250ms ease;
-  }
+  background-color: #636369;
+  box-shadow: 0 10px 10px -5px #63636970;
+  border: 1px solid #d3d3d9;
+  border-bottom: 0;
+  transition: 250ms ease;
 
   &:hover {
-    ${NewsButton} {
-      transform: translate(-50%, -50%) scale(1);
-      z-index: 1;
-    }
-    &::after {
-      left: 0;
+    box-shadow: 0 15px 20px -5px #636369a0, 0 -1px 20px -5px #636369a0;
+    ${ImgContainer} {
+      img {
+        transform: scale(1.08);
+      }
     }
   }
 `;
 const NewsTitle = styled.h3`
   font-size: 17px;
   font-weight: 500;
+  margin-bottom: 8px;
 `;
 const NewsDate = styled.p`
   font-size: 11px;
@@ -79,7 +69,9 @@ const NewsDate = styled.p`
 const NewsDescription = styled.p`
   font-size: 12px;
   line-height: 1.4;
-  margin-top: 8px;
+  margin-top: 25px;
+  padding: 25px 0 20px;
+  border-top: 1px solid #fff;
 `;
 
 export default NewsArticle;

@@ -28,8 +28,9 @@ const ImplementsSection = memo(({ setPos }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", calcSth);
-
+    if (window.innerWidth >= 768) {
+      window.addEventListener("scroll", calcSth);
+    }
     return () => window.removeEventListener("scroll", calcSth);
   }, []);
 

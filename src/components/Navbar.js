@@ -3,7 +3,10 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as NavLogo } from "./assets/icon/tana-lab-logo-removebg-preview.svg";
 
-const Navbar = memo(({ position }) => {
+const Navbar = memo(({ position, disable }) => {
+  console.log(disable)
+  const renderCounter = useRef(0);
+  console.log(++renderCounter.current);
   const [menuOpen, setMenuOpen] = useState(false);
   const linkRef2 = useRef(null);
   const linkRef3 = useRef(null);
@@ -27,7 +30,13 @@ const Navbar = memo(({ position }) => {
   }, []);
 
   useEffect(() => {
-    if (linkClicked && position === linkClicked.position) {
+    if (disable) {
+      setBottomWidth({
+        position: position,
+        width: position < 2 ? 0 : refLink.current[position - 2]
+      })
+    }
+    else if (linkClicked && position === linkClicked.position) {
       setLinkClicked(null);
     } else if (!linkClicked) {
       if (bottomWidth.position !== position) {
