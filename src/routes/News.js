@@ -38,13 +38,13 @@ const NewsPage = memo(() => {
             </GuidesContainer>
           </SectionBackground>
         </SectionMasked>
-      <BGImg>
-        <NewsTitle>{news.title}</NewsTitle>
-      </BGImg>
+        <BGImg>
+          <NewsTitle>{news.title}</NewsTitle>
+        </BGImg>
         <Container>
           <NewsDate>{news.date}</NewsDate>
           {news.video && (
-            <Video autoPlay={false} controls>
+            <Video autoPlay controls>
               <source src={news.video} />
             </Video>
           )}
@@ -73,7 +73,7 @@ const NewsPage = memo(() => {
 const NewsSection = styled(Section)`
   padding-top: 0;
   margin-top: 50px;
-`
+`;
 const BGImg = styled.div`
   width: 100%;
   height: 350px;
