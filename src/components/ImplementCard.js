@@ -11,7 +11,7 @@ const ImplementCard = memo(({ obj }) => {
   return (
     <>
       {window.screen.width < 768 ? (
-        <Link to={`tuhuurumjuud/${obj.urlName}`}>
+        <Link to={`/tuhuurumjuud/${obj.urlName}`}>
           <ImplementCardContainer onClick={handleClick}>
             <ImplementTitle>{obj.name}</ImplementTitle>
             <ImplementImg alt={obj.name} src={`${obj.mainImg}`} />

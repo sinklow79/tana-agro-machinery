@@ -6,7 +6,7 @@ import defaultImg from "./assets/images/onion.jpg";
 const NewsArticle = memo((news) => {
   const newsData = news.news;
   return (
-    <Link to={`medee/${newsData.id}`}>
+    <Link to={`/medee/${newsData.id}`}>
       <NewsArticleContainer>
         <ImgContainer>
           <img
