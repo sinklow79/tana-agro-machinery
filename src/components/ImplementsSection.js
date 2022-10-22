@@ -1,4 +1,4 @@
-import React, { useState, memo, useEffect, useRef, useCallback } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Section, SectionMasked, SectionTitle } from "./GlobalStyles.js";
 import ImplementCard from "./ImplementCard.js";
@@ -22,7 +22,7 @@ const ImplementsSection = memo(({ setPos }) => {
       (top <= 0 &&
         sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
     ) {
-      setPos(3);
+      setPos(2);
     }
   };
 

@@ -9,6 +9,8 @@ import News from "../components/News";
 import { useCallback, useRef, useState } from "react";
 
 const App = () => {
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current, "App");
   const [position, setPosition] = useState(0);
   const prevPos = useRef(position);
 

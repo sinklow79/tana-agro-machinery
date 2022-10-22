@@ -52,7 +52,7 @@ const Hero = memo(({ setPos }) => {
               үйл ажиллагааг бид явуулдаг.
             </SubTitle>
 
-            <CTALink href="#Холбоо-барих">
+            <CTALink href="#холбоо-барих">
               <span>Бидэнтэй холбогдох</span>
             </CTALink>
           </Left>

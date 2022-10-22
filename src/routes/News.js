@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { Section } from "../components/GlobalStyles";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
@@ -17,8 +17,12 @@ export async function loader({ params }) {
 }
 
 const NewsPage = memo(() => {
+  // const renderCounter = useRef(0);
+  // console.log(++renderCounter.current, "newsPage");
   const news = useLoaderData();
-
+  const prevNews = useRef();
+  if (!prevNews.current) prevNews.current = news.id;
+  else if (prevNews.current !== news.id) window.location.reload();
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -28,7 +32,7 @@ const NewsPage = memo(() => {
 
   return (
     <>
-      <Navbar position={4} disable />
+      <Navbar position={3} disable />
       <NewsSection bgColor="#f2f2fa">
         <SectionMasked>
           <SectionBackground className="container">
@@ -149,6 +153,7 @@ const Container = styled.div`
 `;
 const Video = styled.video`
   max-width: 100%;
+  padding: 0 15px;
 `;
 const NewsImg = styled.img``;
 

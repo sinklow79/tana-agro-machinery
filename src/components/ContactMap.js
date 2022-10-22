@@ -49,7 +49,7 @@ const ContactMap = ({ handleMapClick }) => {
   return (
     <div style={{ height: "400px", gridColumn: "1/span 2", position: "relative", overflow: "hidden" }}>
       <Wrapper apiKey={"AIzaSyCqA7Mlv_FutA72BgZoijWahacC8hL-Ac4"} render={render}>
-      <ContactLabel>Газрын зурган дээр дарж тэмдэглээрэй</ContactLabel>
+      <ContactLabel>Газрын зурган дээр дарж талбайн байршилаа тэмдэглээрэй</ContactLabel>
         <Map
           center={center}
           onClick={onClick}
