@@ -222,13 +222,11 @@ const Nav = styled.nav`
   height: 50px;
   box-shadow: ${(props) =>
     props.menuOpen ? "0 -1px 0px 2px #c0c0c2" : "0 0 15px 0 rgba(0, 0, 0, .3)"};
-  background-color: #f2f2f5;
-  /* background-color: transparent; */
-  background: rgba(255,255,255,.8);
-  backdrop-filter: saturate(180%) blur(20px);
+  background: ${props => props.menuOpen ? "#f2f2f5" : 'rgba(255,255,255,.8)'};
+  backdrop-filter:${props => !props.menuOpen ? "saturate(180%) blur(20px)" : "none"};
   border-bottom: ${(props) => props.menuOpen && "1px solid #c0c0c2"};
   z-index: 900;
-  transition: 300ms ease;
+  transition: all 300ms ease;
 `;
 const NavBar = styled.div`
   overflow: hidden;
@@ -239,7 +237,7 @@ const NavBar = styled.div`
   justify-content: space-between;
   transition: inherit;
   position: relative;
-  z-index: 101;
+  z-index: 900;
   @media (min-width: 820px) {
     padding: 0 ${(props) => (props.pos ? "45px" : "30px")};
   }
