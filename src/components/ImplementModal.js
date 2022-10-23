@@ -145,10 +145,13 @@ const Modal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: ${window.innerWidth < 1000 ? `${window.innerWidth}px` : "1000px"};
+  width: ${window.innerWidth < 1080 ? `${window.innerWidth}px` : "1080px"};
   background-color: #fff;
   z-index: 9991;
   cursor: auto;
+  max-height: calc(100vh * 0.8);
+  overflow-y: scroll;
+
 `;
 const ModalMasked = styled.div`
   position: absolute;

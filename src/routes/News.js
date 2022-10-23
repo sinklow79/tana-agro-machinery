@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { Section } from "../components/GlobalStyles";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
@@ -146,7 +146,7 @@ const Guide = styled.div`
 `;
 const Container = styled.div`
   max-width: 680px;
-  padding: 30px 15px 0;
+  padding: 30px 0;
   margin: auto;
   position: relative;
   z-index: 1;

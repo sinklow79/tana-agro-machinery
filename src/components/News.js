@@ -1,5 +1,10 @@
 import React, { memo, useEffect, useRef } from "react";
-import { Section, SectionMasked, SectionTitle } from "./GlobalStyles";
+import {
+  Section,
+  SectionMasked,
+  SectionTitle,
+  SectionContainer,
+} from "./GlobalStyles";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -34,37 +39,39 @@ const News = memo(({ setPos }) => {
   return (
     <NewsSection id="мэдээ" ref={sectionRef}>
       <SectionMasked />
-      <SectionContainer className="container">
-        <NewsContainer>
-          <SectionTitle>Мэдээ</SectionTitle>
-          <NewsLayout>
-            <Swiper
-              spaceBetween={15}
-              slidesPerView={1}
-              breakpoints={{
-                600: {
-                  slidesPerView: 2,
-                },
-                900: {
-                  slidesPerView: 4,
-                },
-              }}
-              navigation={true}
-              modules={[Navigation]}
-              updateOnWindowResize={true}
-              resizeObserver={true}
-              observer={true}
-              observeParents={true}
-              className="newsSwiper"
-            >
-              {newsJSON.map((news, idx) => (
-                <SwiperSlide key={news.description + news.title + idx}>
-                  <NewsArticle news={news} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </NewsLayout>
-        </NewsContainer>
+      <SectionContainer>
+        <SectionLayoutContainer className="container">
+          <NewsContainer>
+            <SectionTitle>Мэдээ</SectionTitle>
+            <NewsLayout>
+              <Swiper
+                spaceBetween={15}
+                slidesPerView={1}
+                breakpoints={{
+                  600: {
+                    slidesPerView: 2,
+                  },
+                  900: {
+                    slidesPerView: 4,
+                  },
+                }}
+                navigation={true}
+                modules={[Navigation]}
+                updateOnWindowResize={true}
+                resizeObserver={true}
+                observer={true}
+                observeParents={true}
+                className="newsSwiper"
+              >
+                {newsJSON.map((news, idx) => (
+                  <SwiperSlide key={news.description + news.title + idx}>
+                    <NewsArticle news={news} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </NewsLayout>
+          </NewsContainer>
+        </SectionLayoutContainer>
       </SectionContainer>
     </NewsSection>
   );
@@ -73,7 +80,7 @@ const News = memo(({ setPos }) => {
 const NewsSection = styled(Section)`
   border-top: 1px solid #f2f2fa;
 `;
-const SectionContainer = styled.div``;
+const SectionLayoutContainer = styled.div``;
 const NewsContainer = styled.div``;
 const NewsLayout = styled.div`
   padding: 0 ${window.innerWidth < 600 ? "15px" : "7.5px"};

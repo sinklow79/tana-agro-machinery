@@ -44,15 +44,6 @@ li {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-@media (min-width: 820px) {
-  .container {
-    padding-right: 30px;
-    padding-left: 30px;
-  }
 }
 
 .img {
@@ -280,4 +271,18 @@ li {
 
 .newsSwiper .swiper-slide {
   margin: 20px 0;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+  z-index: -1 !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #63636988;
+  border-radius: 5px;
 }

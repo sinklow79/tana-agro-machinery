@@ -1,13 +1,12 @@
 import React, { memo, useEffect, useRef } from "react";
 import styled from "styled-components";
-// SWIPER
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-
 import "./Hero.css";
-import { Section } from "./GlobalStyles";
+import { Section, SectionContainer } from "./GlobalStyles";
+import { ReactComponent as RobotFarm } from "./assets/images/CompanyLogos/RobotFarmLogo.svg";
 
 const Hero = memo(({ setPos }) => {
   // const renderCounter = useRef(0);
@@ -39,100 +38,108 @@ const Hero = memo(({ setPos }) => {
 
   return (
     <HeroSection id="нүүр" ref={sectionRef}>
-      <HeroGridContainer>
-        <HeroGrid className="container">
-          <Left>
-            <Title>
-              Сонгино, сармисын талбайн боловсруулалтын Солонгосын ХАА-н тоног
-              төхөөрөмж, технологийг Монголд нутагшуулж байна.
-            </Title>
-            <SubTitle>
-              Сармис, сонгинын талбайн бүтэн цикл үйлдвэрлэлийн бүтээмж өндөртөй
-              орчин үеийн техник тоног төхөөрөмжийг борлуулах болон түрээслэх
-              үйл ажиллагааг бид явуулдаг.
-            </SubTitle>
+      <SectionContainer>
+        <HeroGridContainer>
+          <HeroGrid className="container">
+            <Left>
+              <Title>
+                Сонгино, сармисын талбайн боловсруулалтын Солонгосын ХАА-н тоног
+                төхөөрөмж, технологийг Монголд нутагшуулж байна.
+              </Title>
+              <SubTitle>
+                Сармис, сонгинын талбайн бүтэн цикл үйлдвэрлэлийн бүтээмж
+                өндөртөй орчин үеийн техник тоног төхөөрөмжийг борлуулах болон
+                түрээслэх үйл ажиллагааг бид явуулдаг.
+              </SubTitle>
 
-            <CTALink href="#холбоо-барих">
-              <span>Бидэнтэй холбогдох</span>
-            </CTALink>
-          </Left>
-          <Right>
-            <Swiper
-              navigation={true}
-              modules={[Navigation]}
-              className="HeroSwiper"
-              slidesPerView={1}
-              loop
-              autoplay={true}
-            >
-              <SwiperSlide>
-                <img
-                  alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg6.jpg")}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg1.jpg")}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg2.jpg")}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg3.jpg")}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg4.jpg")}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg5.jpg")}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg0.jpg")}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg7.jpg")}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  alt="боловсруулсан талбай"
-                  src={require("./assets/images/HeroImages/HeroImg8.jpg")}
-                />
-              </SwiperSlide>
-            </Swiper>
-          </Right>
-        </HeroGrid>
-      </HeroGridContainer>
-      <Companies className="container">
-        <img
-          alt="greenmax company logo"
-          src={require("./assets/images/CompanyLogos/gm-horizontal.png")}
-        />
-        <img
-          alt="hada company logo"
-          src={require("./assets/images/CompanyLogos/HADA-removed-bg.png")}
-        />
-      </Companies>
+              <CTALink href="#холбоо-барих">
+                <span>Бидэнтэй холбогдох</span>
+              </CTALink>
+            </Left>
+            <Right>
+              <Swiper
+                navigation={true}
+                modules={[Navigation]}
+                className="HeroSwiper"
+                slidesPerView={1}
+                loop
+                autoplay={true}
+              >
+                <SwiperSlide>
+                  <img
+                    alt="боловсруулсан талбай"
+                    src={require("./assets/images/HeroImages/HeroImg6.jpg")}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img
+                    alt="боловсруулсан талбай"
+                    src={require("./assets/images/HeroImages/HeroImg1.jpg")}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img
+                    alt="боловсруулсан талбай"
+                    src={require("./assets/images/HeroImages/HeroImg2.jpg")}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img
+                    alt="боловсруулсан талбай"
+                    src={require("./assets/images/HeroImages/HeroImg3.jpg")}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img
+                    alt="боловсруулсан талбай"
+                    src={require("./assets/images/HeroImages/HeroImg4.jpg")}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img
+                    alt="боловсруулсан талбай"
+                    src={require("./assets/images/HeroImages/HeroImg5.jpg")}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img
+                    alt="боловсруулсан талбай"
+                    src={require("./assets/images/HeroImages/HeroImg0.jpg")}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img
+                    alt="боловсруулсан талбай"
+                    src={require("./assets/images/HeroImages/HeroImg7.jpg")}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img
+                    alt="боловсруулсан талбай"
+                    src={require("./assets/images/HeroImages/HeroImg8.jpg")}
+                  />
+                </SwiperSlide>
+              </Swiper>
+            </Right>
+          </HeroGrid>
+        </HeroGridContainer>
+        <Companies className="container">
+          <img
+            alt="greenmax company logo"
+            src={require("./assets/images/CompanyLogos/gm-horizontal.png")}
+          />
+          <img
+            alt="hada company logo"
+            src={require("./assets/images/CompanyLogos/HADA-removed-bg.png")}
+          />
+          <RobotFarm
+            style={{
+              width: "100px",
+              height: "fit-content",
+            }}
+          />
+        </Companies>
+      </SectionContainer>
     </HeroSection>
   );
 });
@@ -153,13 +160,17 @@ const HeroGrid = styled.div`
   }
 `;
 const Companies = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
-  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-around;
   margin-top: calc(72px + 5vw);
+  row-gap: 70px;
   img {
     width: 100px;
+  }
+  @media (min-width: 600px) {
+    flex-direction: row;
   }
 `;
 const Left = styled.div`

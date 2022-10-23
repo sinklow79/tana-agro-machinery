@@ -1,8 +1,12 @@
 import React, { useState, useRef, memo, useCallback } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { ReactComponent as NavLogo } from "./assets/icon/tana-lab-logo-removebg-preview.svg";
 import { useNavigate } from "react-router-dom";
+import { navHeight, paddingSides, TAMLogo } from "./GlobalStyles";
+
+
+
+
 
 const Navbar = memo(({ position, disable }) => {
   // const renderCounter = useRef(0);
@@ -67,11 +71,9 @@ const Navbar = memo(({ position, disable }) => {
 
   return (
     <Nav menuOpen={menuOpen}>
-      <NavBar className="container" pos={position !== 0}>
+      <NavBar className="container" pos={position}>
         <NavCompany href="#нүүр" onClick={() => handleLinkClick("/#нүүр", 0)}>
           <StyledNavLogo />
-
-          <NavCompanyName>Тана агро</NavCompanyName>
         </NavCompany>
         <NavMenu menuOpen={menuOpen}>
           <NavList>
@@ -175,12 +177,8 @@ const NavMenuBarsContainer = styled.div`
   }
 `;
 
-const StyledNavLogo = styled(NavLogo)`
-  height: 40px;
-  width: 40px;
-  fill: #000;
-  position: relative;
-  z-index: 900;
+const StyledNavLogo = styled(TAMLogo)`
+
 `;
 
 const NavLinkBottom = styled.span`
@@ -199,19 +197,9 @@ const NavCompany = styled.a`
   align-items: center;
   column-gap: 10px;
   color: inherit;
-`;
-
-const NavCompanyName = styled.span`
-  display: none;
-  @media (min-width: 600px) {
-    display: inline-block;
-    margin-top: 2px;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 19px;
-    font-style: italic;
-    color: inherit;
-  }
+  height: 100%;
+  position: relative;
+  z-index: 900;
 `;
 
 const Nav = styled.nav`
@@ -219,7 +207,7 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  height: 50px;
+  height: ${navHeight}px;
   box-shadow: ${(props) =>
     props.menuOpen ? "0 -1px 0px 2px #c0c0c2" : "0 0 15px 0 rgba(0, 0, 0, .3)"};
   background: ${props => props.menuOpen ? "#f2f2f5" : 'rgba(255,255,255,.8)'};
@@ -229,7 +217,6 @@ const Nav = styled.nav`
   transition: all 300ms ease;
 `;
 const NavBar = styled.div`
-  overflow: hidden;
   width: 100%;
   height: 100%;
   display: flex;
@@ -238,17 +225,15 @@ const NavBar = styled.div`
   transition: inherit;
   position: relative;
   z-index: 900;
-  @media (min-width: 820px) {
-    padding: 0 ${(props) => (props.pos ? "45px" : "30px")};
-  }
+  padding: 0 ${paddingSides}px;
 `;
 
 const NavMenu = styled.ul`
   position: fixed;
-  top: 50px;
+  top: ${navHeight}px;
   left: 0;
   width: 100%;
-  height: calc(100vh - 50px);
+  height: calc(100vh - ${navHeight}px);
   transform: ${(props) =>
     props.menuOpen
       ? "translateY(0) scaleY(1)"

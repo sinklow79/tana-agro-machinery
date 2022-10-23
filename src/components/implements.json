@@ -13,7 +13,7 @@
     ],
     "images": ["../assets/images/King Rotary 0.jpg","../assets/images/King Rotary 1.jpg","../assets/images/King Rotary 2.jpg","../assets/images/King Rotary 3.jpg","../assets/images/King Rotary 4.jpg"],
     "video": "../assets/videos/King Rotary Main.mp4",
-    "companyLogo": "../assets/images/gm-horizontal.png",
+    "companyLogo": "../assets/images/CompanyLogos/gm-horizontal.png",
     "web": "http://www.greenmax.co.kr/en/",
     "company": "greenmax",
     "id": 2
@@ -26,7 +26,7 @@
     "benefits": ["Хөрсийг маш сайн нарийн бутлана", "Ямарч газар боловсруулалтанд ашиглаж болно", "Дэвшилтэт технологиор хийсэн ган төмөр", "Аюулгүй байдал хангасан"],
     "images": ["../assets/images/Rotary Tiller 0.png", "../assets/images/Rotary Tiller 1.jpg"],
     "video":"../assets/videos/Rotary Tiller.mp4",
-    "companyLogo": "../assets/images/gm-horizontal.png",
+    "companyLogo": "../assets/images/CompanyLogos/gm-horizontal.png",
     "web": "http://www.greenmax.co.kr/en/",
     "company": "greenmax",
     "id": 1
@@ -41,7 +41,7 @@
       "Далан татаж үрлэхэд бэлэн болгоно"
     ],
     "images": ["../assets/images/ДаланТатагч.png","../assets/images/ДаланТатагч1.png"],
-    "companyLogo": "../assets/images/gm-horizontal.png",
+    "companyLogo": "../assets/images/CompanyLogos/gm-horizontal.png",
     "web": "http://www.greenmax.co.kr/en/",
     "company": "greenmax",
     "id": 3
@@ -58,7 +58,7 @@
     ],
     "images": ["../assets/images/sorter.png"],
     "video" :"../assets/videos/Sorter.mp4",
-    "companyLogo": "../assets/images/HADA-removed-bg.png",
+    "companyLogo": "../assets/images/CompanyLogos/HADA-removed-bg.png",
     "web": "https://www.hada-korea.com/eng/",
     "company": "hada",
     "id": 4
@@ -74,7 +74,7 @@
     ],
     "images": ["../assets/images/planter.png", "../assets/images/planter 0.jpg", "../assets/images/planter 1.jpg"],
     "video": "../assets/videos/Planter.mp4",
-    "companyLogo": "../assets/images/HADA-removed-bg.png",
+    "companyLogo": "../assets/images/CompanyLogos/HADA-removed-bg.png",
     "web": "https://www.hada-korea.com/eng/",
     "company": "hada",
     "id": 5
