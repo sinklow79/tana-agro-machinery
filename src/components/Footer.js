@@ -1,8 +1,14 @@
 import React from "react";
-import { Section, SectionMasked } from "./GlobalStyles";
+import {
+  paddingSides,
+  Section,
+  SectionContainer,
+  SectionMasked,
+  TAMLogo,
+} from "./GlobalStyles";
 import styled from "styled-components";
-import { ReactComponent as CompanyLogo } from "./assets/icon/tana-lab-logo-removebg-preview.svg";
 import { FaFacebookF } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom'
 /*
     1. location of our office
     2. socials
@@ -16,44 +22,48 @@ import { FaFacebookF } from "react-icons/fa";
 const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
+  const navigate = useNavigate();
   return (
     <footer>
       <FooterSection as="div">
         <SectionMasked />
-        <FooterContainer className="container">
-          <FooterCompanyInfo>
-            <FooterCompanyLogo href="#home">
-              <CompanyLogo
-                style={{
-                  height: "40px",
-                  width: "40px",
-                  marginBottom: "-3px",
-                }}
-              />
-            </FooterCompanyLogo>
-            <p>ЧД 3-р хороо, Улаанбаатар хот, ОРШИЛ-2 оффис, 302 тоот</p>
-          </FooterCompanyInfo>
-          <FooterSocials>
-            <Socials
-              rel="noreferrer"
-              target="_blank"
-              href="https://www.facebook.com/profile.php?id=100063638048135"
-            >
-              <StyledFBLogo />
-            </Socials>
-          </FooterSocials>
-        </FooterContainer>
+        <SectionContainer>
+          <FooterContainer className="container">
+            <FooterCompanyInfo>
+              <FooterCompanyLogo href="#нүүр" onClick={() => {
+                if (window.location.pathname !== '/') {
+                  navigate("/#нүүр");
+                }
+              }}>
+                <TAMLogo />
+              </FooterCompanyLogo>
+              <p>ЧД 3-р хороо, Улаанбаатар хот, ОРШИЛ-2 оффис, 302 тоот</p>
+            </FooterCompanyInfo>
+            <FooterSocials>
+              <Socials
+                rel="noreferrer"
+                target="_blank"
+                href="https://www.facebook.com/profile.php?id=100063638048135"
+              >
+                <StyledFBLogo />
+              </Socials>
+            </FooterSocials>
+          </FooterContainer>
+        </SectionContainer>
       </FooterSection>
       <Copyright>
-        <p>&#169; {year} <span>TANA AGRO MACHINERY</span>. All rights reserved.</p>
+        <p>
+          &#169; {year} <span>TANA AGRO MACHINERY</span>. All rights reserved.
+        </p>
       </Copyright>
     </footer>
   );
 };
+
 const Copyright = styled.div`
-  padding: 36px 15px;
+  padding: 36px ${paddingSides}px;
   text-align: center;
-  font-size: 13px; 
+  font-size: 13px;
   font-weight: 500;
   border-top: 1px solid #f2f2fa;
   max-width: 1020px;
@@ -67,16 +77,15 @@ const Copyright = styled.div`
     display: inline-block;
     margin-left: 3px;
   }
-`
+`;
 const StyledFBLogo = styled(FaFacebookF)`
   fill: #fff;
   font-size: 37px;
   transition: 200ms;
-  background-color: rgba(0, 0, 0);
+  background-color: #4267b2;
   padding: 10px;
   &:hover {
     transform: scale(1.05);
-    background-color: #000;
   }
 `;
 
@@ -106,7 +115,7 @@ const FooterContainer = styled.div`
   }
 `;
 const FooterSocials = styled.div`
-  padding: 0 15px;
+  padding: 0 ${paddingSides}px;
   display: flex;
   align-items: end;
   @media (min-width: 900px) {
@@ -115,7 +124,7 @@ const FooterSocials = styled.div`
 `;
 const FooterCompanyInfo = styled.div`
   font-size: 14px;
-  padding: 0 15px;
+  padding: 0 ${paddingSides}px;
   display: flex;
   flex-direction: column;
   row-gap: 15px;

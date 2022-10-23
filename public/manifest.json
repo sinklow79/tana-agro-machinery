@@ -1,13 +1,7 @@
 {
   "short_name": "Tana Agro Machinery",
-  "name": "Rent Our Agricultural Implements",
+  "name": "Хөдөө аж ахуйн тоног төхөөрөмж түрээслэж; сонгино, сармисны талбайн боловсруулалт хийнэ.",
   "start_url": ".",
-  "icons": [
-    {
-      "src": "./assets/images/tana-lab-logo-removebg-preview.png",
-      "sizes": "100x100"
-    }
-  ],
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

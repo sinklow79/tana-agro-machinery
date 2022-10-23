@@ -1,13 +1,15 @@
 import React, { useState, useRef, memo, useEffect } from "react";
 import styled from "styled-components";
 import { Formik, Field, Form } from "formik";
-import { object, string, number, array, setLocale } from "yup";
+import { object, string, number, array } from "yup";
 import { Button, TextField } from "@mui/material";
 import {
   SectionTitle,
   SectionCaption,
   SectionMasked,
   Section,
+  paddingSides,
+  SectionContainer,
 } from "./GlobalStyles";
 import ContactMap from "./ContactMap";
 import implementsJSON from "./implements.json";
@@ -104,171 +106,173 @@ const Contact = memo(({ setPos }) => {
         </SubmitStatus>
       )}
       <SectionMasked />
-      <SectionLayoutContainer className="container">
-        <SectionLayout>
-          <SectionHeader>
-            <SectionCaption>Холбоо барих</SectionCaption>
-            <SectionTitle>Бидэнтэй хамтарч ажиллаарай</SectionTitle>
-          </SectionHeader>
-          <ContactForm>
-            <Formik
-              initialValues={{
-                email: "",
-                phoneNumber: "",
-                name: "",
-                location: "",
-                companyName: "",
-                түрээслэхТөхөөрөмж: [],
-                lat: "",
-                lng: "",
-              }}
-              onSubmit={sendEmail}
-              validationSchema={validationSchema}
-            >
-              {(props) => (
-                <Form ref={form} className="ContactForm">
-                  <TextField
-                    className="textField"
-                    fullWidth
-                    id="name"
-                    name="name"
-                    label="Нэр *"
-                    value={props.values.name}
-                    onChange={props.handleChange}
-                    error={props.touched.name && Boolean(props.errors.name)}
-                    helperText={props.touched.name && props.errors.name}
-                  />
-                  <TextField
-                    className="textField"
-                    fullWidth
-                    id="email"
-                    name="email"
-                    label="Email *"
-                    value={props.values.email}
-                    onChange={props.handleChange}
-                    error={props.touched.email && Boolean(props.errors.email)}
-                    helperText={props.touched.email && props.errors.email}
-                  />
-                  <TextField
-                    className="textField"
-                    fullWidth
-                    id="companyName"
-                    name="companyName"
-                    label="Компанийн нэр"
-                    value={props.values.companyName}
-                    onChange={props.handleChange}
-                    error={
-                      props.touched.companyName &&
-                      Boolean(props.errors.companyName)
-                    }
-                    helperText={
-                      props.touched.companyName && props.errors.companyName
-                    }
-                  />
-                  <TextField
-                    className="textField"
-                    fullWidth
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    label="Утасны дугаар *"
-                    type={"number"}
-                    value={props.values.phoneNumber}
-                    onChange={props.handleChange}
-                    error={
-                      props.touched.phoneNumber &&
-                      Boolean(props.errors.phoneNumber)
-                    }
-                    helperText={
-                      props.touched.phoneNumber && props.errors.phoneNumber
-                    }
-                    style={{
-                      backgroundColor: "#fff",
-                    }}
-                  />
-                  <CheckboxGroupContainer>
-                    <ContactLabel>Түрээслэх Төхөөрөмжүүд</ContactLabel>
-                    <CheckboxGroup
-                      role="group"
-                      aria-labelledby="checkbox-group"
-                    >
-                      {implementsJSON.map((implement) => (
-                        <Label key={implement.name}>
-                          <Field
-                            type="checkbox"
-                            name="түрээслэхТөхөөрөмж"
-                            value={implement.name}
-                          />
-                          {implement.name}
-                        </Label>
-                      ))}
-                    </CheckboxGroup>
-                    {props.errors.түрээслэхТөхөөрөмж &&
-                      props.touched.түрээслэхТөхөөрөмж && (
-                        <ErrorMessage>
-                          Заавал нэгийг сонгох шаардлагатай
-                        </ErrorMessage>
-                      )}
-                  </CheckboxGroupContainer>
-                  <TextField
-                    className="textField"
-                    fullWidth
-                    id="location"
-                    name="location"
-                    label="Талбайн байршил *"
-                    value={props.values.location}
-                    onChange={props.handleChange}
-                    error={
-                      props.touched.location && Boolean(props.errors.location)
-                    }
-                    helperText={
-                      props.touched.phoneNumber && props.errors.location
-                    }
-                    size={"medium"}
-                    fontSize={"0.9rem"}
-                    style={{
-                      gridColumn: "1 / span 2",
-                    }}
-                  />
-                  <ContactMap handleMapClick={handleMapClick} />
-                  <input
-                    name="lat"
-                    value={position.lat}
-                    readOnly
-                    style={{ display: "none" }}
-                  />
-                  <input
-                    name="lng"
-                    value={position.lng}
-                    readOnly
-                    style={{ display: "none" }}
-                  />
-                  <div style={{ position: "relative", height: "78px" }}>
-                    <div
+      <SectionContainer>
+        <SectionLayoutContainer className="container">
+          <SectionLayout>
+            <SectionHeader>
+              <SectionCaption>Холбоо барих</SectionCaption>
+              <SectionTitle>Бидэнтэй хамтарч ажиллаарай</SectionTitle>
+            </SectionHeader>
+            <ContactForm>
+              <Formik
+                initialValues={{
+                  email: "",
+                  phoneNumber: "",
+                  name: "",
+                  location: "",
+                  companyName: "",
+                  түрээслэхТөхөөрөмж: [],
+                  lat: "",
+                  lng: "",
+                }}
+                onSubmit={sendEmail}
+                validationSchema={validationSchema}
+              >
+                {(props) => (
+                  <Form ref={form} className="ContactForm">
+                    <TextField
+                      className="textField"
+                      fullWidth
+                      id="name"
+                      name="name"
+                      label="Нэр *"
+                      value={props.values.name}
+                      onChange={props.handleChange}
+                      error={props.touched.name && Boolean(props.errors.name)}
+                      helperText={props.touched.name && props.errors.name}
+                    />
+                    <TextField
+                      className="textField"
+                      fullWidth
+                      id="email"
+                      name="email"
+                      label="Email *"
+                      value={props.values.email}
+                      onChange={props.handleChange}
+                      error={props.touched.email && Boolean(props.errors.email)}
+                      helperText={props.touched.email && props.errors.email}
+                    />
+                    <TextField
+                      className="textField"
+                      fullWidth
+                      id="companyName"
+                      name="companyName"
+                      label="Компанийн нэр"
+                      value={props.values.companyName}
+                      onChange={props.handleChange}
+                      error={
+                        props.touched.companyName &&
+                        Boolean(props.errors.companyName)
+                      }
+                      helperText={
+                        props.touched.companyName && props.errors.companyName
+                      }
+                    />
+                    <TextField
+                      className="textField"
+                      fullWidth
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      label="Утасны дугаар *"
+                      type={"number"}
+                      value={props.values.phoneNumber}
+                      onChange={props.handleChange}
+                      error={
+                        props.touched.phoneNumber &&
+                        Boolean(props.errors.phoneNumber)
+                      }
+                      helperText={
+                        props.touched.phoneNumber && props.errors.phoneNumber
+                      }
                       style={{
-                        position: "absolute",
-                        transform:
-                          window.innerWidth < 360 ? "scale(0.8)" : "scale(1)",
+                        backgroundColor: "#fff",
                       }}
-                    >
-                      <ReCAPTCHA
-                        sitekey="6LdvLGIiAAAAAPs64aTnN3ZNa73QhohVdgnkHxZV"
-                        // style={{ transform: window.innerWidth < 360 ? "scale(0.8)" : "scale(1)"}}
-                      />
+                    />
+                    <CheckboxGroupContainer>
+                      <ContactLabel>Түрээслэх Төхөөрөмжүүд</ContactLabel>
+                      <CheckboxGroup
+                        role="group"
+                        aria-labelledby="checkbox-group"
+                      >
+                        {implementsJSON.map((implement) => (
+                          <Label key={implement.name}>
+                            <Field
+                              type="checkbox"
+                              name="түрээслэхТөхөөрөмж"
+                              value={implement.name}
+                            />
+                            {implement.name}
+                          </Label>
+                        ))}
+                      </CheckboxGroup>
+                      {props.errors.түрээслэхТөхөөрөмж &&
+                        props.touched.түрээслэхТөхөөрөмж && (
+                          <ErrorMessage>
+                            Заавал нэгийг сонгох шаардлагатай
+                          </ErrorMessage>
+                        )}
+                    </CheckboxGroupContainer>
+                    <TextField
+                      className="textField"
+                      fullWidth
+                      id="location"
+                      name="location"
+                      label="Талбайн байршил *"
+                      value={props.values.location}
+                      onChange={props.handleChange}
+                      error={
+                        props.touched.location && Boolean(props.errors.location)
+                      }
+                      helperText={
+                        props.touched.phoneNumber && props.errors.location
+                      }
+                      size={"medium"}
+                      fontSize={"0.9rem"}
+                      style={{
+                        gridColumn: "1 / span 2",
+                      }}
+                    />
+                    <ContactMap handleMapClick={handleMapClick} />
+                    <input
+                      name="lat"
+                      value={position.lat}
+                      readOnly
+                      style={{ display: "none" }}
+                    />
+                    <input
+                      name="lng"
+                      value={position.lng}
+                      readOnly
+                      style={{ display: "none" }}
+                    />
+                    <div style={{ position: "relative", height: "78px" }}>
+                      <div
+                        style={{
+                          position: "absolute",
+                          transform:
+                            window.innerWidth < 360 ? "scale(0.8)" : "scale(1)",
+                        }}
+                      >
+                        <ReCAPTCHA
+                          sitekey="6LdvLGIiAAAAAPs64aTnN3ZNa73QhohVdgnkHxZV"
+                          // style={{ transform: window.innerWidth < 360 ? "scale(0.8)" : "scale(1)"}}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    className="ContactBtn"
-                  >
-                    Илгээх
-                  </Button>
-                </Form>
-              )}
-            </Formik>
-          </ContactForm>
-        </SectionLayout>
-      </SectionLayoutContainer>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      className="ContactBtn"
+                    >
+                      Илгээх
+                    </Button>
+                  </Form>
+                )}
+              </Formik>
+            </ContactForm>
+          </SectionLayout>
+        </SectionLayoutContainer>
+      </SectionContainer>
     </ContactSection>
   );
 });
@@ -337,7 +341,7 @@ const SectionLayoutContainer = styled.div``;
 const SectionLayout = styled.div``;
 const SectionHeader = styled.div``;
 const ContactForm = styled.div`
-  padding: 0 15px;
+  padding: 0 ${paddingSides}px;
 `;
 const CheckboxGroup = styled.div`
   display: flex;

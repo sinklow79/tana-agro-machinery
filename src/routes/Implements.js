@@ -6,7 +6,7 @@ import AvailableImages from "../components/AvailableImages";
 import { ReactComponent as BenefitSVG } from "../components/assets/icon/benefit.svg";
 import { TiTick } from "react-icons/ti";
 import { FaTractor } from "react-icons/fa";
-import { SectionMasked } from "../components/GlobalStyles";
+import { navHeight, paddingSides, SectionMasked } from "../components/GlobalStyles";
 import { useLoaderData } from "react-router-dom";
 
 export async function loader({ params }) {
@@ -33,7 +33,7 @@ const Implements = () => {
   return (
     <>
       <Navbar />
-      <section style={{marginTop: "50px"}} id="#home">
+      <section style={{marginTop: navHeight+"px"}} id="#home">
         {data.video && (
           <ImplementVideoContainer>
             <ImplementVideo autoPlay controls muted>
@@ -143,7 +143,7 @@ const Padding = styled.div`
 `;
 const ImplementImages = styled.div`
   background-color: #f2f2f5;
-  padding: 32px 0;
+  padding: 32px ${paddingSides}px;
 `;
 const ImplementVideoContainer = styled.div`
   width: 100%;
@@ -196,7 +196,7 @@ const BigImg = styled.img`
 `;
 const FeaturesBenefits = styled.div`
 position: relative;
-  padding: 36px 0;
+  padding: 36px ${paddingSides}px;
 `;
 const FeaturesBenefitsUl = styled.ul`
   

@@ -1,4 +1,12 @@
 import styled from "styled-components";
+import tamLogo from "./assets/images/CompanyLogos/TAMLogoFull.png";
+
+export const navHeight = 60;
+export const paddingSides = 15;
+
+export const SectionContainer = styled.div`
+  margin: 0 ${paddingSides}px;
+`;
 
 export const Section = styled.section`
   padding: calc(72px + 3vw) 0;
@@ -7,11 +15,10 @@ export const Section = styled.section`
   z-index: 1;
 `;
 
-export const Main = styled.main`
-`;
+export const Main = styled.main``;
 
 export const SectionTitle = styled.h2`
-  padding-left: 15px;
+  padding-left: ${paddingSides}px;
   padding-bottom: 25px;
   font-size: 20px;
   font-weight: 500;
@@ -26,7 +33,7 @@ export const SectionCaption = styled.h3`
   font-size: 15px;
   font-weight: 400;
   line-height: 1.55;
-  padding: 0 15px;
+  padding: 0 ${paddingSides}px;
   &:after {
     content: "";
     position: absolute;
@@ -41,18 +48,30 @@ export const SectionCaption = styled.h3`
     font-size: 16px;
   }
 `;
+
+export const TAMLogo = () => {
+  return <TAMLogoImg src={tamLogo} />;
+};
+
+const TAMLogoImg = styled.img`
+  height: 100%;
+  max-height: 50px;
+`;
+
 export const SectionMasked = () => {
   return (
     <SectionBackgroundMasked>
-      <SectionBackground className="container">
-        <GuidesContainer>
-          <Guide />
-          <Guide />
-          <Guide />
-          <Guide />
-          <Guide />
-        </GuidesContainer>
-      </SectionBackground>
+      <MaskedSectionContainer>
+        <SectionBackground className="container">
+          <GuidesContainer>
+            <Guide />
+            <Guide />
+            <Guide />
+            <Guide />
+            <Guide />
+          </GuidesContainer>
+        </SectionBackground>
+      </MaskedSectionContainer>
     </SectionBackgroundMasked>
   );
 };
@@ -65,6 +84,12 @@ const SectionBackgroundMasked = styled.div`
   height: 100%;
   z-index: 0;
 `;
+const MaskedSectionContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  margin: 0;
+`
 const SectionBackground = styled.div`
   width: 100%;
   height: 100%;

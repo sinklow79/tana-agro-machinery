@@ -53,6 +53,9 @@ const ImplementCardContainer = styled.div`
       box-shadow: 11px 11px 15px 1px rgb(0 0 0 / 12%);
     }
   }
+  @media (min-width: 900px) {
+    grid-column: span 2;
+  }
   cursor: pointer;
 `;
 

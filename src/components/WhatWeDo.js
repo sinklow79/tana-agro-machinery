@@ -4,7 +4,13 @@ import { ReactComponent as WWDIcon2 } from "./assets/icon/WWD2.svg";
 import { ReactComponent as WWDIcon4 } from "./assets/icon/WWD4.svg";
 import WWDIcon3 from "./assets/icon/WWD3.png";
 import styled from "styled-components";
-import { Section, SectionMasked, SectionTitle } from "./GlobalStyles";
+import {
+  Section,
+  SectionMasked,
+  SectionTitle,
+  paddingSides,
+  SectionContainer,
+} from "./GlobalStyles";
 
 const WhatWeDo = memo(({ setPos }) => {
   // const renderCounter = useRef(0);
@@ -36,59 +42,61 @@ const WhatWeDo = memo(({ setPos }) => {
   return (
     <Section id="тухай" ref={sectionRef}>
       <SectionMasked />
-      <SectionContainer className="container">
-        <WWDSectionTitle>Ягаад бидэнтэй ажиллана гэж?</WWDSectionTitle>
-        <WWDGridContainer>
-          <WWD>
-            <WWDIcon1
-              width={window.innerWidth < 1024 ? "35px" : "58px"}
-              height={window.innerWidth < 1024 ? "35px" : "43px"}
-              className="WWDIcon1"
-            />
-            <h3>Илүү төхөөрөмжүүд</h3>
-            <p>
-              Бид өндөр хөгжилтэй Солонгос орны хөдөөн аж ахуйн төхөөрөмж
-              үйлдвэрлэдэг Greenmax компаний албан ёсны борлуулагч болон
-              түрээслэгч юм.
-            </p>
-          </WWD>
-          <WWD>
-            <WWDIcon2 width={window.innerWidth < 1024 ? "30px" : "42px"} />
-            <h3>Илүү хөрс боловсруулалт</h3>
-            <p>
-              Бид хөрс боловсруулалтын иж бүрдэлээрээ таны хөрсийг өндөр
-              стандартаар хагалж бэлдэх болно.
-            </p>
-          </WWD>
-          <WWD>
-            <img
-              src={WWDIcon3}
-              width={window.innerWidth < 1024 ? "30px" : "42px"}
-              fill="#000000"
-              style={{ fill: "#000000 !important" }}
-              className="svgg"
-              alt=""
-            />
-            <h3>Илүү тариалалт</h3>
-            <p>
-              Бид сонгино, сармисны үр сортлогч болон таригчаар таны үрийг
-              хурдан, нэгэн жигд үрлэнэ.
-            </p>
-          </WWD>
-          <WWD>
-            <WWDIcon4 width={window.innerWidth < 1024 ? "30px" : "42px"} />
-            <h3>Илүү хураалт</h3>
-            <p>
-              Та ийнхүү бидний төхөөрөмжүүдийг ашигласнаар илүү ургац авахад
-              олон алхам ойртох юм.
-            </p>
-          </WWD>
-        </WWDGridContainer>
+      <SectionContainer>
+        <SectionLayoutContainer className="container">
+          <WWDSectionTitle>Ягаад бидэнтэй ажиллана гэж?</WWDSectionTitle>
+          <WWDGridContainer>
+            <WWD>
+              <WWDIcon1
+                width={window.innerWidth < 1024 ? "35px" : "58px"}
+                height={window.innerWidth < 1024 ? "35px" : "43px"}
+                className="WWDIcon1"
+              />
+              <h3>Илүү төхөөрөмжүүд</h3>
+              <p>
+                Бид өндөр хөгжилтэй Солонгос орны хөдөөн аж ахуйн төхөөрөмж
+                үйлдвэрлэдэг Greenmax компаний албан ёсны борлуулагч болон
+                түрээслэгч юм.
+              </p>
+            </WWD>
+            <WWD>
+              <WWDIcon2 width={window.innerWidth < 1024 ? "30px" : "42px"} />
+              <h3>Илүү хөрс боловсруулалт</h3>
+              <p>
+                Бид хөрс боловсруулалтын иж бүрдэлээрээ таны хөрсийг өндөр
+                стандартаар хагалж бэлдэх болно.
+              </p>
+            </WWD>
+            <WWD>
+              <img
+                src={WWDIcon3}
+                width={window.innerWidth < 1024 ? "30px" : "42px"}
+                fill="#000000"
+                style={{ fill: "#000000 !important" }}
+                className="svgg"
+                alt=""
+              />
+              <h3>Илүү тариалалт</h3>
+              <p>
+                Бид сонгино, сармисны үр сортлогч болон таригчаар таны үрийг
+                хурдан, нэгэн жигд үрлэнэ.
+              </p>
+            </WWD>
+            <WWD>
+              <WWDIcon4 width={window.innerWidth < 1024 ? "30px" : "42px"} />
+              <h3>Илүү хураалт</h3>
+              <p>
+                Та ийнхүү бидний төхөөрөмжүүдийг ашигласнаар илүү ургац авахад
+                олон алхам ойртох юм.
+              </p>
+            </WWD>
+          </WWDGridContainer>
+        </SectionLayoutContainer>
       </SectionContainer>
     </Section>
   );
 });
-const SectionContainer = styled.div`
+const SectionLayoutContainer = styled.div`
   position: relative;
   z-index: 1;
 `;
@@ -115,9 +123,9 @@ const WWD = styled.div`
   row-gap: 8px;
   border-radius: 20px;
   transition: 250ms ease-in-out;
-  padding: 0 15px;
+  padding: 0 ${paddingSides}px;
   @media (min-width: 600px) {
-    padding: 0 30px 0 15px;
+    padding: 0 30px 0 ${paddingSides}px;
   }
   h3 {
     margin-top: 10px;
