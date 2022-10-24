@@ -6,7 +6,9 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import "./Hero.css";
 import { Section, SectionContainer } from "./GlobalStyles";
-import { ReactComponent as RobotFarm } from "./assets/images/CompanyLogos/RobotFarmLogo.svg";
+import { ReactComponent as RobotFarm } from "./assets/images/CompanyLogos/partner5.svg";
+import partner3 from "./assets/images/CompanyLogos/partner3.png";
+import partner4 from "./assets/images/CompanyLogos/partner4.gif";
 
 const Hero = memo(({ setPos }) => {
   // const renderCounter = useRef(0);
@@ -124,25 +126,73 @@ const Hero = memo(({ setPos }) => {
           </HeroGrid>
         </HeroGridContainer>
         <Companies className="container">
-          <img
-            alt="greenmax company logo"
-            src={require("./assets/images/CompanyLogos/gm-horizontal.png")}
-          />
-          <img
-            alt="hada company logo"
-            src={require("./assets/images/CompanyLogos/HADA-removed-bg.png")}
-          />
-          <RobotFarm
-            style={{
-              width: "100px",
-              height: "fit-content",
-            }}
-          />
+          <PartnerLink
+            href="http://www.greenmax.co.kr/en/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              alt="greenmax company logo"
+              src={require("./assets/images/CompanyLogos/partner1.png")}
+            />
+          </PartnerLink>
+          <PartnerLink
+            href="http://www.hada-korea.com/eng/#none"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              alt="hada company logo"
+              src={require("./assets/images/CompanyLogos/partner2.png")}
+            />
+          </PartnerLink>
+          <PartnerLink>
+            <RobotFarm
+              style={{
+                width: "100px",
+                height: "fit-content",
+              }}
+            />
+          </PartnerLink>
+          <PartnerLink
+            href="http://www.dae-shin.net/%EB%95%85%EC%86%8D%EC%9E%91%EB%AC%BC%EC%88%98%ED%99%95%EA%B8%B0"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Partner3 src={partner3} alt="dae-shin company logo" />
+          </PartnerLink>
+          <PartnerLink
+            href="http://www.powerspray.co.kr/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Partner4 src={partner4} alt="911 love of soil company logo" />
+          </PartnerLink>
         </Companies>
       </SectionContainer>
     </HeroSection>
   );
 });
+
+const PartnerLink = styled.a`
+  display: block;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid #f0f; */
+  img {
+    max-width: 100%;
+    width: 100px;
+  }
+`;
+
+const Partner3 = styled.img`
+  width: 150px !important;
+`;
+const Partner4 = styled.img`
+  width: 200px !important;
+`;
 
 const HeroSection = styled(Section)`
   overflow-x: hidden;
@@ -160,17 +210,16 @@ const HeroGrid = styled.div`
   }
 `;
 const Companies = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
   margin-top: calc(72px + 5vw);
-  row-gap: 70px;
-  img {
-    width: 100px;
-  }
+  row-gap: 60px;
   @media (min-width: 600px) {
-    flex-direction: row;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 const Left = styled.div`
