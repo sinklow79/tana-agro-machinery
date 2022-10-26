@@ -44,7 +44,7 @@ const WhatWeDo = memo(({ setPos }) => {
       <SectionMasked />
       <SectionContainer>
         <SectionLayoutContainer className="container">
-          <WWDSectionTitle>Ягаад бидэнтэй ажиллана гэж?</WWDSectionTitle>
+          <WWDSectionTitle>Яагаад бидэнтэй ажиллана гэж?</WWDSectionTitle>
           <WWDGridContainer>
             <WWD>
               <WWDIcon1
@@ -54,7 +54,7 @@ const WhatWeDo = memo(({ setPos }) => {
               />
               <h3>Илүү төхөөрөмжүүд</h3>
               <p>
-                Бид өндөр хөгжилтэй Солонгос орны хөдөөн аж ахуйн төхөөрөмж
+                Бид өндөр хөгжилтэй Солонгос орны хөдөө аж ахуйн төхөөрөмж
                 үйлдвэрлэдэг Greenmax компаний албан ёсны борлуулагч болон
                 түрээслэгч юм.
               </p>
