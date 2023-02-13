@@ -170,7 +170,7 @@ const Hero = memo(({ setPos }) => {
           </PartnerLink>
           {/* DAE SHIN */}
           <PartnerLink
-            href="http://www.dae-shin.net/%EB%95%85%EC%86%8D%EC%9E%91%EB%AC%BC%EC%88%98%ED%99%95%EA%B8%B0"
+            href="http://www.dae-shin.net/"
             target="_blank"
             rel="noreferrer"
           >
