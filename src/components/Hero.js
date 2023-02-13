@@ -126,6 +126,7 @@ const Hero = memo(({ setPos }) => {
           </HeroGrid>
         </HeroGridContainer>
         <Companies className="container">
+          {/* GREENMAX */}
           <PartnerLink
             href="http://www.greenmax.co.kr/en/"
             target="_blank"
@@ -136,6 +137,7 @@ const Hero = memo(({ setPos }) => {
               src={require("./assets/images/CompanyLogos/partner1.png")}
             />
           </PartnerLink>
+          {/* HADA */}
           <PartnerLink
             href="http://www.hada-korea.com/eng/#none"
             target="_blank"
@@ -146,21 +148,35 @@ const Hero = memo(({ setPos }) => {
               src={require("./assets/images/CompanyLogos/partner2.png")}
             />
           </PartnerLink>
+          {/* SHIN NONG */}
+          <PartnerLink
+            href="https://shin-nong.com/v2/eng/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <ShinNongLogo
+              alt="Shin Nong company logo"
+              src={"http://shin-nong.com/v2/eng/image/common/logo.png"}
+            />
+          </PartnerLink>
+          {/* ROBOT FARM */}
           <PartnerLink>
             <RobotFarm
               style={{
-                width: "100px",
+                width: "95px",
                 height: "fit-content",
               }}
             />
           </PartnerLink>
+          {/* DAE SHIN */}
           <PartnerLink
-            href="http://www.dae-shin.net/%EB%95%85%EC%86%8D%EC%9E%91%EB%AC%BC%EC%88%98%ED%99%95%EA%B8%B0"
+            href="http://www.dae-shin.net/"
             target="_blank"
             rel="noreferrer"
           >
             <Partner3 src={partner3} alt="dae-shin company logo" />
           </PartnerLink>
+          {/* LOVE OF SOIL */}
           <PartnerLink
             href="http://www.powerspray.co.kr/"
             target="_blank"
@@ -193,6 +209,9 @@ const Partner3 = styled.img`
 const Partner4 = styled.img`
   width: 200px !important;
 `;
+const ShinNongLogo = styled.img`
+  width: 145px !important;
+`
 
 const HeroSection = styled(Section)`
   overflow-x: hidden;
