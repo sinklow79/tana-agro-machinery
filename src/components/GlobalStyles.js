@@ -3,6 +3,8 @@ import tamLogo from "./assets/images/CompanyLogos/TAMLogoFull.png";
 
 export const navHeight = 70;
 export const paddingSides = 15;
+export const companyThemeColor1 = "rgb(20, 125, 200)";
+export const companyThemeColor2 = "rgb(20, 61, 143)";
 
 export const SectionContainer = styled.div`
   margin: 0 ${paddingSides}px;
@@ -42,7 +44,11 @@ export const SectionCaption = styled.h3`
     transform: translateY(-50%);
     width: 1px;
     height: 13px;
-    background-color: rgb(232, 52, 13);
+    background-image: linear-gradient(
+      to right,
+      ${companyThemeColor1},
+      ${companyThemeColor2}
+    );
   }
   @media (min-width: 768px) {
     font-size: 16px;

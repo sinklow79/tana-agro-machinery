@@ -1,18 +1,20 @@
-
 export default function ErrorPage() {
   return (
-    <div id="error-page" style={{
-      position: "fixed",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      width: "100%",
-      height: "100vh",
-      background: "#635bff",
-      color: "#fff"
-    }}>
+    <div
+      id="error-page"
+      style={{
+        position: "fixed",
+        width: "100%",
+        height: "100vh",
+        color: "#000",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
       <h1>404</h1>
-      <p>Not Found</p>
+      <p>Илэрц олдсонгүй</p>
     </div>
   );
 }

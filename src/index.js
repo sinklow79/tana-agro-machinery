@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Implements, { loader as implementsLoader } from "./routes/Implements";
 import NewsPage, { loader as newsLoader } from "./routes/News";
 import Root from "./routes/root";
+import ErrorPage from "./error-page";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
         loader: newsLoader,
       },
     ],
+    errorElement: <ErrorPage />,
   },
 ]);
 
@@ -34,5 +36,5 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <StrictMode>
   // </StrictMode>
-    <RouterProvider router={router} />
+  <RouterProvider router={router} />
 );

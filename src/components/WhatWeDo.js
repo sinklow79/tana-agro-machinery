@@ -10,6 +10,8 @@ import {
   SectionTitle,
   paddingSides,
   SectionContainer,
+  companyThemeColor1,
+  companyThemeColor2,
 } from "./GlobalStyles";
 
 const WhatWeDo = memo(({ setPos }) => {
@@ -141,7 +143,11 @@ const WWD = styled.div`
       transform: translateY(-50%);
       width: 1px;
       height: 13px;
-      background-color: rgb(232, 52, 13);
+      background-image: linear-gradient(
+        to right,
+        ${companyThemeColor1},
+        ${companyThemeColor2}
+      );
     }
   }
   p {

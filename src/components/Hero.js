@@ -9,6 +9,7 @@ import { Section, SectionContainer } from "./GlobalStyles";
 import { ReactComponent as RobotFarm } from "./assets/images/CompanyLogos/partner5.svg";
 import partner3 from "./assets/images/CompanyLogos/partner3.png";
 import partner4 from "./assets/images/CompanyLogos/partner4.gif";
+import { companyThemeColor1, companyThemeColor2 } from "./GlobalStyles";
 
 const Hero = memo(({ setPos }) => {
   // const renderCounter = useRef(0);
@@ -54,9 +55,13 @@ const Hero = memo(({ setPos }) => {
                 түрээслэх үйл ажиллагааг бид явуулдаг.
               </SubTitle>
 
-              <CTALink href="#холбоо-барих">
-                <span>Бидэнтэй холбогдох</span>
-              </CTALink>
+              <CTALinkWrapper>
+                <CTALinkBG></CTALinkBG>
+                <CTALink href="#холбоо-барих">
+                  <span>Бидэнтэй</span>&nbsp;
+                  <span>холбогдох</span>
+                </CTALink>
+              </CTALinkWrapper>
             </Left>
             <Right>
               <Swiper
@@ -211,7 +216,7 @@ const Partner4 = styled.img`
 `;
 const ShinNongLogo = styled.img`
   width: 145px !important;
-`
+`;
 
 const HeroSection = styled(Section)`
   overflow-x: hidden;
@@ -301,45 +306,81 @@ const SubTitle = styled.h2`
     position: relative;
   }
 `;
-const CTALink = styled.a`
-  text-transform: uppercase;
-  font-size: 13px;
-  padding: 15px 22px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  /* background-color: rgb(232, 52, 13); */
-  border: 4px solid rgb(232, 52, 13);
-  width: max-content;
-  color: rgb(232, 52, 13);
-  transition: 300ms ease;
-  box-shadow: 2px 2px 5px 1px rgba(50, 0, 0, 0.3);
+const CTALinkWrapper = styled.div`
   position: relative;
+  width: max-content;
+`;
+const CTALinkBG = styled.div`
+  background-image: linear-gradient(
+    to right,
+    ${companyThemeColor1},
+    ${companyThemeColor2}
+  );
+  border-radius: 5px;
+  content: "";
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -2;
 
-  span {
-    position: relative;
-    z-index: 2;
-  }
-
-  &::after {
+  &:before {
+    opacity: 1;
+    background-image: linear-gradient(
+      to right,
+      ${companyThemeColor1},
+      ${companyThemeColor2}
+    );
+    border: 19px solid transparent;
+    background-clip: padding-box;
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
+    filter: blur(36px);
     height: 100%;
-    z-index: 1;
-    transition: 250ms ease;
-    background-color: rgb(232, 52, 13);
+    position: absolute;
+    width: 100%;
+    z-index: -1;
   }
+`;
+
+const CTALink = styled.a`
+  box-shadow: 0 4px 4px 0 #00000040;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  transition-property: color, background-color, box-shadow;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+  height: 57px;
+  border-radius: 5px;
+  padding: 0 12px;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  outline: none;
+  margin: 0;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+
+  /* TEXT */
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  vertical-align: baseline;
+  letter-spacing: 1px;
+  color: ${companyThemeColor2};
+
+  /* HOVER */
   &:hover {
+    background-color: transparent;
     color: #fff;
-    &:after {
-      width: 100%;
-    }
   }
+
   @media (min-width: 600px) {
-    font-size: 14px;
-    padding: 16px 24px;
+    padding: 0 24px;
   }
 `;
 

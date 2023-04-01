@@ -2,11 +2,13 @@ import React, { useState, useRef, memo, useCallback } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { navHeight, paddingSides, TAMLogo } from "./GlobalStyles";
-
-
-
-
+import {
+  companyThemeColor1,
+  companyThemeColor2,
+  navHeight,
+  paddingSides,
+  TAMLogo,
+} from "./GlobalStyles";
 
 const Navbar = memo(({ position, disable }) => {
   // const renderCounter = useRef(0);
@@ -25,7 +27,7 @@ const Navbar = memo(({ position, disable }) => {
   const handleLinkClick = useCallback(
     (path, pos) => {
       if (window.innerWidth < 768) setMenuOpen(false);
-      if (curPath !== '/') {
+      if (curPath !== "/") {
         navigate(path);
       }
       if (position !== bottomPosition) {
@@ -177,16 +179,18 @@ const NavMenuBarsContainer = styled.div`
   }
 `;
 
-const StyledNavLogo = styled(TAMLogo)`
-
-`;
+const StyledNavLogo = styled(TAMLogo)``;
 
 const NavLinkBottom = styled.span`
   position: absolute;
   width: ${(props) => (!props.width ? 0 : props.width - 15)}px;
   height: 1.3px;
-  background: rgb(232, 52, 13);
-  bottom: 8px;
+  background-image: linear-gradient(
+    to right,
+    ${companyThemeColor1},
+    ${companyThemeColor2}
+  );
+  bottom: 15px;
   left: ${(props) => props.left}px;
   transition: 250ms ease-in-out;
 `;
@@ -210,8 +214,10 @@ const Nav = styled.nav`
   height: ${navHeight}px;
   box-shadow: ${(props) =>
     props.menuOpen ? "0 -1px 0px 2px #c0c0c2" : "0 0 15px 0 rgba(0, 0, 0, .3)"};
-  background: ${props => props.menuOpen ? "#f2f2f5" : 'rgba(255,255,255,.8)'};
-  backdrop-filter:${props => !props.menuOpen ? "saturate(180%) blur(20px)" : "none"};
+  background: ${(props) =>
+    props.menuOpen ? "#f2f2f5" : "rgba(255,255,255,.8)"};
+  backdrop-filter: ${(props) =>
+    !props.menuOpen ? "saturate(180%) blur(20px)" : "none"};
   border-bottom: ${(props) => props.menuOpen && "1px solid #c0c0c2"};
   z-index: 900;
   transition: all 300ms ease;
@@ -279,7 +285,7 @@ const NavLink = styled.a`
     transition: 220ms ease;
   }
   @media (min-width: 768px) {
-    font-size: 14.5px;
+    font-size: 16px;
     border-bottom: 0;
     padding: 0 15px;
     margin: 0;
