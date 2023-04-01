@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import tamLogo from "./assets/images/CompanyLogos/TAMLogoFull.png";
 
-export const navHeight = 60;
+export const navHeight = 70;
 export const paddingSides = 15;
 
 export const SectionContainer = styled.div`
@@ -55,7 +55,7 @@ export const TAMLogo = () => {
 
 const TAMLogoImg = styled.img`
   height: 100%;
-  max-height: 50px;
+  max-height: 60px;
 `;
 
 export const SectionMasked = () => {
@@ -89,7 +89,7 @@ const MaskedSectionContainer = styled.div`
   height: 100%;
   padding: 0 15px;
   margin: 0;
-`
+`;
 const SectionBackground = styled.div`
   width: 100%;
   height: 100%;
