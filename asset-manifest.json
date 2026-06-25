@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/tana-agro-machinery/static/css/main.4d8071c4.css",
+    "main.js": "/tana-agro-machinery/static/js/main.80d71dbd.js",
+    "static/media/Greenmax catalog.pdf": "/tana-agro-machinery/static/media/Greenmax catalog.b40a3b14186c50abbe50.pdf",
+    "static/media/defaultImg.jfif": "/tana-agro-machinery/static/media/defaultImg.5f405590a34600ab48d8.jfif",
+    "static/media/onion.jpg": "/tana-agro-machinery/static/media/onion.332d10e0849201434a71.jpg",
+    "static/media/CatalogueImg.png": "/tana-agro-machinery/static/media/CatalogueImg.6ce660de13832d50a91e.png",
+    "static/media/HeroImg3.jpg": "/tana-agro-machinery/static/media/HeroImg3.9ae9cbf6aa7346f0f125.jpg",
+    "static/media/HeroImg6.jpg": "/tana-agro-machinery/static/media/HeroImg6.afc9aa3cf36a7fe5b867.jpg",
+    "static/media/HeroImg5.jpg": "/tana-agro-machinery/static/media/HeroImg5.dfac7f661316519b1380.jpg",
+    "static/media/HeroImg4.jpg": "/tana-agro-machinery/static/media/HeroImg4.3cdb311a85f35a141a18.jpg",
+    "static/media/HeroImg1.jpg": "/tana-agro-machinery/static/media/HeroImg1.b92c280f4d53bebf094f.jpg",
+    "static/media/HeroImg2.jpg": "/tana-agro-machinery/static/media/HeroImg2.e2e7c081ebe2fd0290b6.jpg",
+    "static/media/HeroImg0.jpg": "/tana-agro-machinery/static/media/HeroImg0.2d04259051bd4b4c9557.jpg",
+    "static/media/HeroImg7.jpg": "/tana-agro-machinery/static/media/HeroImg7.fbc0dea13a6c69269554.jpg",
+    "static/media/HeroImg8.jpg": "/tana-agro-machinery/static/media/HeroImg8.70c546b59e888eb05868.jpg",
+    "static/media/WWD3.png": "/tana-agro-machinery/static/media/WWD3.fe0af25af711befdadbf.png",
+    "static/media/TAMLogoFull.png": "/tana-agro-machinery/static/media/TAMLogoFull.8e761ec8f67c92eb2195.png",
+    "static/media/partner4.gif": "/tana-agro-machinery/static/media/partner4.f5749207670b1f61d0c6.gif",
+    "static/media/WWD1.svg": "/tana-agro-machinery/static/media/WWD1.6d50b3ff545606feb74fb9d0e1c55d9c.svg",
+    "static/media/WWD4.svg": "/tana-agro-machinery/static/media/WWD4.507dc1b25a0062eea910279bcfa97fbf.svg",
+    "index.html": "/tana-agro-machinery/index.html",
+    "static/media/WWD2.svg": "/tana-agro-machinery/static/media/WWD2.a6e61ed45094336c72b133d40bcf071a.svg",
+    "static/media/partner5.svg": "/tana-agro-machinery/static/media/partner5.d0e94f4f698fb3cb3395ba04a31eacd6.svg",
+    "static/media/benefit.svg": "/tana-agro-machinery/static/media/benefit.5c8e16e009b0948118d1018824aa2fd1.svg",
+    "main.4d8071c4.css.map": "/tana-agro-machinery/static/css/main.4d8071c4.css.map",
+    "main.80d71dbd.js.map": "/tana-agro-machinery/static/js/main.80d71dbd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d8071c4.css",
+    "static/js/main.80d71dbd.js"
+  ]
+}
