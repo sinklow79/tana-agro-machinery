@@ -1,1 +1,5 @@
-*.mp4 filter=lfs diff=lfs merge=lfs -text
+# Videos are served directly by GitHub Pages, which does NOT support Git LFS.
+# Disable the LFS filter here so the deployed (gh-pages) build stores real
+# video bytes instead of LFS pointer files. (The source repo still uses LFS;
+# this override only applies to the published build output.)
+*.mp4 -filter -diff -merge -text
