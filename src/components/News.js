@@ -14,27 +14,26 @@ import { Navigation } from "swiper";
 
 const News = memo(({ setPos }) => {
   const sectionRef = useRef();
-  const calcSth = () => {
-    const topWPadding =
-      sectionRef.current.getBoundingClientRect().top +
-      window.innerWidth * 0.03 +
-      72;
-    const top = sectionRef.current.getBoundingClientRect().top;
-    if (
-      (topWPadding >= 0 && topWPadding <= window.innerHeight * 0.4) ||
-      (top <= 0 &&
-        sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
-    ) {
-      setPos(3);
-    }
-  };
-
   useEffect(() => {
+    const calcSth = () => {
+      const topWPadding =
+        sectionRef.current.getBoundingClientRect().top +
+        window.innerWidth * 0.03 +
+        72;
+      const top = sectionRef.current.getBoundingClientRect().top;
+      if (
+        (topWPadding >= 0 && topWPadding <= window.innerHeight * 0.4) ||
+        (top <= 0 &&
+          sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
+      ) {
+        setPos(3);
+      }
+    };
     if (window.innerWidth >= 768 && setPos) {
       window.addEventListener("scroll", calcSth);
     }
     return () => window.removeEventListener("scroll", calcSth);
-  }, []);
+  }, [setPos]);
 
   return (
     <NewsSection id="мэдээ" ref={sectionRef}>

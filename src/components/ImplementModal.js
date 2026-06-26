@@ -6,6 +6,9 @@ import { TiTick } from "react-icons/ti";
 import { FaTractor } from "react-icons/fa";
 import { ReactComponent as BenefitSVG } from "../components/assets/icon/benefit.svg";
 
+const mediaUrl = (path) =>
+  /^https?:\/\//.test(path) ? path : `${process.env.PUBLIC_URL}/${path}`;
+
 const ImplementModal = ({ data, handleOutsideClick }) => {
   let availableContent = [...data.images];
   if (data.video) availableContent.unshift(data.video);
@@ -33,12 +36,12 @@ const ImplementModal = ({ data, handleOutsideClick }) => {
                 selectedContent.slice(selectedContent.length - 3)
               ) ? (
                 <SelectedVideo key={selectedContent} autoPlay controls muted id="displayedContent">
-                  <source type="video/mp4" alt={data.name + "бичлэг"} src={process.env.PUBLIC_URL + "/" + selectedContent} />
+                  <source type="video/mp4" alt={data.name + "бичлэг"} src={mediaUrl(selectedContent)} />
                 </SelectedVideo>
               ) : (
                 <SelectedImg
                   alt={data.name}
-                  src={process.env.PUBLIC_URL + "/" + selectedContent}
+                  src={mediaUrl(selectedContent)}
                   id="displayedContent"
                 />
               )}

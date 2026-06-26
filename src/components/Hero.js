@@ -15,28 +15,27 @@ const Hero = memo(({ setPos }) => {
   // console.log(++renderCounter.current);
   const sectionRef = useRef();
 
-  const calcSth = () => {
-    const topWPadding =
-      sectionRef.current.getBoundingClientRect().top +
-      window.innerWidth * 0.03 +
-      72;
-    const top = sectionRef.current.getBoundingClientRect().top;
-    if (
-      (topWPadding >= 0 && topWPadding <= window.innerHeight * 0.4) ||
-      (top <= 0 &&
-        sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
-    ) {
-      setPos(0);
-    }
-  };
-
   useEffect(() => {
+    const calcSth = () => {
+      const topWPadding =
+        sectionRef.current.getBoundingClientRect().top +
+        window.innerWidth * 0.03 +
+        72;
+      const top = sectionRef.current.getBoundingClientRect().top;
+      if (
+        (topWPadding >= 0 && topWPadding <= window.innerHeight * 0.4) ||
+        (top <= 0 &&
+          sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
+      ) {
+        setPos(0);
+      }
+    };
     if (window.innerWidth >= 768) {
       window.addEventListener("scroll", calcSth);
     }
 
     return () => window.removeEventListener("scroll", calcSth);
-  }, []);
+  }, [setPos]);
 
   return (
     <HeroSection id="нүүр" ref={sectionRef}>
@@ -54,7 +53,13 @@ const Hero = memo(({ setPos }) => {
                 түрээслэх үйл ажиллагааг бид явуулдаг.
               </SubTitle>
 
-              <CTALink href="#холбоо-барих">
+              <CTALink
+                href="#холбоо-барих"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('холбоо-барих')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 <span>Бидэнтэй холбогдох</span>
               </CTALink>
             </Left>

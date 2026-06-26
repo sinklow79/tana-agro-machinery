@@ -15,6 +15,9 @@ export async function loader({ params }) {
   return data;
 }
 
+const mediaUrl = (path) =>
+  /^https?:\/\//.test(path) ? path : `${process.env.PUBLIC_URL}/${path}`;
+
 const Implements = () => {
   const data = useLoaderData();
 
@@ -37,7 +40,7 @@ const Implements = () => {
         {data.video && (
           <ImplementVideoContainer>
             <ImplementVideo autoPlay controls muted>
-              <source type="video/mp4" src={process.env.PUBLIC_URL + "/" + data.video} alt={data.name + "бичлэг"} />
+              <source type="video/mp4" src={mediaUrl(data.video)} alt={data.name + "бичлэг"} />
             </ImplementVideo>
             <Skeleton />
           </ImplementVideoContainer>

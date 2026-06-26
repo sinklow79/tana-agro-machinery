@@ -16,6 +16,17 @@ export async function loader({ params }) {
   return exactData;
 }
 
+const mediaUrl = (path) =>
+  /^https?:\/\//.test(path) ? path : `${process.env.PUBLIC_URL}/${path}`;
+
+const getYouTubeEmbedUrl = (url) => {
+  const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^&\s?]+)/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+};
+
+const isYouTubeUrl = (url) =>
+  url && (url.includes("youtube.com") || url.includes("youtu.be"));
+
 const NewsPage = memo(() => {
   // const renderCounter = useRef(0);
   // console.log(++renderCounter.current, "newsPage");
@@ -48,9 +59,18 @@ const NewsPage = memo(() => {
         <Container>
           <NewsDate>{news.date}</NewsDate>
           {news.video && (
-            <Video autoPlay controls>
-              <source type="video/mp4" src={process.env.PUBLIC_URL + "/" + news.video} />
-            </Video>
+            isYouTubeUrl(news.video) ? (
+              <YouTubeEmbed
+                src={getYouTubeEmbedUrl(news.video)}
+                title={news.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <Video autoPlay controls>
+                <source type="video/mp4" src={mediaUrl(news.video)} />
+              </Video>
+            )
           )}
           <NewsText>{news.text ? news.text : news.description}</NewsText>
           {news.images && (
@@ -154,6 +174,13 @@ const Container = styled.div`
 const Video = styled.video`
   max-width: 100%;
   padding: 0 15px;
+`;
+const YouTubeEmbed = styled.iframe`
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  padding: 0 15px;
+  box-sizing: border-box;
 `;
 const NewsImg = styled.img``;
 

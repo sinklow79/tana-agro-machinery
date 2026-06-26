@@ -1,7 +1,7 @@
 import React, { useState, useRef, memo, useCallback } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { navHeight, paddingSides, TAMLogo } from "./GlobalStyles";
 
 
@@ -21,18 +21,21 @@ const Navbar = memo(({ position, disable }) => {
   const [linkClicked, setLinkClicked] = useState(null);
   const [linkWidths, setLinkWidths] = useState([0, 0, 0, 0, 0]);
   const navigate = useNavigate();
-  const curPath = window.location.pathname;
+  const { pathname } = useLocation();
   const handleLinkClick = useCallback(
-    (path, pos) => {
+    (e, sectionId, pos) => {
+      e.preventDefault();
       if (window.innerWidth < 768) setMenuOpen(false);
-      if (curPath !== '/') {
-        navigate(path);
+      if (pathname !== '/') {
+        navigate('/');
+      } else {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
       }
       if (position !== bottomPosition) {
         setLinkClicked(pos);
       }
     },
-    [bottomPosition, curPath, navigate, position]
+    [bottomPosition, pathname, navigate, position]
   );
 
   useEffect(() => {
@@ -59,7 +62,7 @@ const Navbar = memo(({ position, disable }) => {
         setBottomPosition(position);
       }
     }
-  }, [position, linkClicked]);
+  }, [position, linkClicked, bottomPosition, disable]);
   const leftCalculator = (position, linkWidths) => {
     if (!position) return 0;
     let left = 7.5;
@@ -72,7 +75,7 @@ const Navbar = memo(({ position, disable }) => {
   return (
     <Nav menuOpen={menuOpen}>
       <NavBar className="container" pos={position}>
-        <NavCompany href="#нүүр" onClick={() => handleLinkClick("/#нүүр", 0)}>
+        <NavCompany href="#нүүр" onClick={(e) => handleLinkClick(e, 'нүүр', 0)}>
           <StyledNavLogo />
         </NavCompany>
         <NavMenu menuOpen={menuOpen}>
@@ -80,7 +83,7 @@ const Navbar = memo(({ position, disable }) => {
             <NavLink
               href="#тухай"
               ref={linkRef2}
-              onClick={() => handleLinkClick("/#тухай", 1)}
+              onClick={(e) => handleLinkClick(e, 'тухай', 1)}
               onMouseEnter={() => {
                 if (bottomPosition === 1) return;
                 setBottomPosition(1);
@@ -97,7 +100,7 @@ const Navbar = memo(({ position, disable }) => {
             <NavLink
               href="#төхөөрөмжүүд"
               ref={linkRef3}
-              onClick={() => handleLinkClick("/#төхөөрөмжүүд", 2)}
+              onClick={(e) => handleLinkClick(e, 'төхөөрөмжүүд', 2)}
               onMouseEnter={() => {
                 if (bottomPosition === 2) return;
                 setBottomPosition(2);
@@ -114,7 +117,7 @@ const Navbar = memo(({ position, disable }) => {
             <NavLink
               href="#мэдээ"
               ref={linkRef4}
-              onClick={() => handleLinkClick("", 3)}
+              onClick={(e) => handleLinkClick(e, 'мэдээ', 3)}
               onMouseEnter={() => {
                 if (bottomPosition === 3) return;
                 setBottomPosition(3);
@@ -131,7 +134,7 @@ const Navbar = memo(({ position, disable }) => {
             <NavLink
               href="#холбоо-барих"
               ref={linkRef5}
-              onClick={() => handleLinkClick("/#холбоо-барих", 4)}
+              onClick={(e) => handleLinkClick(e, 'холбоо-барих', 4)}
               onMouseEnter={() => {
                 if (bottomPosition === 4) return;
                 setBottomPosition(4);

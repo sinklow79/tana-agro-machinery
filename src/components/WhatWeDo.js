@@ -17,27 +17,26 @@ const WhatWeDo = memo(({ setPos }) => {
   // console.log(++renderCounter.current);
   const sectionRef = useRef();
 
-  const calcSth = () => {
-    const topWPadding =
-      sectionRef.current.getBoundingClientRect().top +
-      window.innerWidth * 0.03 +
-      72;
-    const top = sectionRef.current.getBoundingClientRect().top;
-    if (
-      (topWPadding >= 0 && topWPadding <= window.innerHeight * 0.4) ||
-      (top <= 0 &&
-        sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
-    ) {
-      setPos(1);
-    }
-  };
-
   useEffect(() => {
+    const calcSth = () => {
+      const topWPadding =
+        sectionRef.current.getBoundingClientRect().top +
+        window.innerWidth * 0.03 +
+        72;
+      const top = sectionRef.current.getBoundingClientRect().top;
+      if (
+        (topWPadding >= 0 && topWPadding <= window.innerHeight * 0.4) ||
+        (top <= 0 &&
+          sectionRef.current.offsetHeight + top >= window.innerHeight * 0.4)
+      ) {
+        setPos(1);
+      }
+    };
     if (window.innerWidth >= 768) {
       window.addEventListener("scroll", calcSth);
     }
     return () => window.removeEventListener("scroll", calcSth);
-  }, []);
+  }, [setPos]);
 
   return (
     <Section id="тухай" ref={sectionRef}>

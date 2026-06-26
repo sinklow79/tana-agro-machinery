@@ -7,6 +7,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
 
+const mediaUrl = (path) =>
+  /^https?:\/\//.test(path) ? path : `${process.env.PUBLIC_URL}/${path}`;
+
 const AvailableImages = ({
   selectedImg,
   images,
@@ -50,10 +53,10 @@ const AvailableImages = ({
                     path.slice(path.length - 3)
                   ) ? (
                     <AvailableVideo>
-                      <source src={process.env.PUBLIC_URL + "/" + path} alt="төхөөрөмж бичлэг" />
+                      <source src={mediaUrl(path)} alt="төхөөрөмж бичлэг" />
                     </AvailableVideo>
                   ) : (
-                    <AvailableImg src={process.env.PUBLIC_URL + "/" + path} alt="төхөөрөмж зураг" />
+                    <AvailableImg src={mediaUrl(path)} alt="төхөөрөмж зураг" />
                   )}
                   <Skeleton />
                 </SwiperSlide>
@@ -75,10 +78,10 @@ const AvailableImages = ({
                     path.slice(path.length - 3)
                   ) ? (
                     <AvailableVideo>
-                      <source src={process.env.PUBLIC_URL + "/" + path} alt="төхөөрөмж бичлэг" />
+                      <source src={mediaUrl(path)} alt="төхөөрөмж бичлэг" />
                     </AvailableVideo>
                   ) : (
-                    <AvailableImg src={process.env.PUBLIC_URL + "/" + path} alt="төхөөрөмж зураг" />
+                    <AvailableImg src={mediaUrl(path)} alt="төхөөрөмж зураг" />
                   )}
                   <Skeleton />
                 </AvailableImageContainer>
